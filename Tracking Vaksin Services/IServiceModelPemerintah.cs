@@ -15,6 +15,15 @@ namespace Tracking_Vaksin_Services
          * Ini akan digunakan untuk mengambil data username dan password dari database tabel pemerintah atau login pemerintah
          */
         [OperationContract]
-        bool login(ref Pemerintah pemerintah, string username, string password, ref int StatusCode, ref string message);
+        bool login(ref PemerintahS pemerintahS, string username, string password, ref int StatusCode, ref string message);
+    }
+
+    [DataContract]
+    public class PemerintahS
+    {
+        [DataMember]
+        public int id { get; set; }
+        [DataMember]
+        public string username { get; set; }
     }
 }

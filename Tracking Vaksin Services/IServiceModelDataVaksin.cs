@@ -12,18 +12,42 @@ namespace Tracking_Vaksin_Services
     public interface IServiceModelDataVaksin
     {
         [OperationContract]
-        bool getAllDataVaksin(ref IEnumerable<DataVaksin> dataVaksin, ref int StatusCode, ref string Message);
+        bool getAllDataVaksin(ref List<DataVaksinS> dataVaksinS, ref int StatusCode, ref string Message);
 
         [OperationContract]
-        bool getDataVaksinByID(ref DataVaksin dataVaksin, int id, ref int StatusCode, ref string Message);
+        bool getDataVaksinByID(ref DataVaksinS dataVaksinS, int id, ref int StatusCode, ref string Message);
 
         [OperationContract]
-        bool createDataVaksin(DataVaksin dataVaksin, ref int StatusCode, ref string Message);
+        bool createDataVaksin(DataVaksinS dataVaksinS, ref int StatusCode, ref string Message);
 
         [OperationContract]
-        bool updateDataVaksin(DataVaksin dataVaksin, ref int StatusCode, ref string Message);
+        bool updateDataVaksin(DataVaksinS dataVaksinS, ref int StatusCode, ref string Message);
 
         [OperationContract]
         bool deleteDataVaksin(int id, ref int StatusCode, ref string Message);
+    }
+
+    [DataContract]
+    [KnownType(typeof(List<DataVaksinS>))]
+    public class DataVaksinS
+    {
+        [DataMember]
+        public int id { get; set; }
+        [DataMember]
+        public Nullable<int> id_produsen { get; set; }
+        [DataMember]
+        public Nullable<int> id_rumahsakit_penerima { get; set; }
+        [DataMember]
+        public string no_registrasi { get; set; }
+        [DataMember]
+        public string nama { get; set; }
+        [DataMember]
+        public Nullable<System.DateTime> tgl_pembuatan { get; set; }
+        [DataMember]
+        public Nullable<System.DateTime> tgl_terima { get; set; }
+        [DataMember]
+        public Nullable<int> jumlah { get; set; }
+        [DataMember]
+        public Nullable<int> jumlah_pakai { get; set; }
     }
 }

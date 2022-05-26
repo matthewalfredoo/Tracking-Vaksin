@@ -21,7 +21,7 @@
           <Property Name="id_penduduk" Type="int" />
           <Property Name="id_rumahsakit" Type="int" />
           <Property Name="id_vaksin" Type="int" />
-          <Property Name="nik" Type="int" />
+          <Property Name="nik" Type="varchar" MaxLength="255" />
           <Property Name="tgl_terimavaksin" Type="datetime" />
         </EntityType>
         <EntityType Name="DataPenduduk">
@@ -41,20 +41,13 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_produsen" Type="int" />
+          <Property Name="id_rumahsakit_penerima" Type="int" />
           <Property Name="no_registrasi" Type="varchar" MaxLength="255" />
           <Property Name="nama" Type="varchar" MaxLength="255" />
           <Property Name="tgl_pembuatan" Type="datetime" />
           <Property Name="tgl_terima" Type="date" />
           <Property Name="jumlah" Type="int" />
           <Property Name="jumlah_pakai" Type="int" />
-        </EntityType>
-        <EntityType Name="DistributedVaksin">
-          <Key>
-            <PropertyRef Name="id_rumahsakit" />
-            <PropertyRef Name="id_vaksin" />
-          </Key>
-          <Property Name="id_rumahsakit" Type="int" Nullable="false" />
-          <Property Name="id_vaksin" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Masyarakat">
           <Key>
@@ -92,7 +85,7 @@
           <Property Name="nama" Type="varchar" MaxLength="255" />
           <Property Name="alamat" Type="varchar" MaxLength="255" />
         </EntityType>
-        <Association Name="FK__DataPasie__id_pe__3E52440B">
+        <Association Name="FK__DataPasie__id_pe__3B75D760">
           <End Role="DataPenduduk" Type="Self.DataPenduduk" Multiplicity="0..1" />
           <End Role="DataPasien" Type="Self.DataPasien" Multiplicity="*" />
           <ReferentialConstraint>
@@ -104,7 +97,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DataPasie__id_ru__3F466844">
+        <Association Name="FK__DataPasie__id_ru__3C69FB99">
           <End Role="RumahSakit" Type="Self.RumahSakit" Multiplicity="0..1" />
           <End Role="DataPasien" Type="Self.DataPasien" Multiplicity="*" />
           <ReferentialConstraint>
@@ -116,7 +109,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DataPasie__id_va__403A8C7D">
+        <Association Name="FK__DataPasie__id_va__3D5E1FD2">
           <End Role="DataVaksin" Type="Self.DataVaksin" Multiplicity="0..1" />
           <End Role="DataPasien" Type="Self.DataPasien" Multiplicity="*" />
           <ReferentialConstraint>
@@ -152,27 +145,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Distribut__id_ru__398D8EEE">
-          <End Role="RumahSakit" Type="Self.RumahSakit" Multiplicity="1" />
-          <End Role="DistributedVaksin" Type="Self.DistributedVaksin" Multiplicity="*" />
+        <Association Name="FK__DataVaksi__id_ru__37A5467C">
+          <End Role="RumahSakit" Type="Self.RumahSakit" Multiplicity="0..1" />
+          <End Role="DataVaksin" Type="Self.DataVaksin" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="RumahSakit">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="DistributedVaksin">
-              <PropertyRef Name="id_rumahsakit" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Distribut__id_va__3A81B327">
-          <End Role="DataVaksin" Type="Self.DataVaksin" Multiplicity="1" />
-          <End Role="DistributedVaksin" Type="Self.DistributedVaksin" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DataVaksin">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="DistributedVaksin">
-              <PropertyRef Name="id_vaksin" />
+            <Dependent Role="DataVaksin">
+              <PropertyRef Name="id_rumahsakit_penerima" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -193,20 +174,19 @@
           <EntitySet Name="DataPasien" EntityType="Self.DataPasien" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DataPenduduk" EntityType="Self.DataPenduduk" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DataVaksin" EntityType="Self.DataVaksin" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DistributedVaksin" EntityType="Self.DistributedVaksin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Masyarakat" EntityType="Self.Masyarakat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pemerintah" EntityType="Self.Pemerintah" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Produsen" EntityType="Self.Produsen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RumahSakit" EntityType="Self.RumahSakit" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__DataPasie__id_pe__3E52440B" Association="Self.FK__DataPasie__id_pe__3E52440B">
+          <AssociationSet Name="FK__DataPasie__id_pe__3B75D760" Association="Self.FK__DataPasie__id_pe__3B75D760">
             <End Role="DataPenduduk" EntitySet="DataPenduduk" />
             <End Role="DataPasien" EntitySet="DataPasien" />
           </AssociationSet>
-          <AssociationSet Name="FK__DataPasie__id_ru__3F466844" Association="Self.FK__DataPasie__id_ru__3F466844">
+          <AssociationSet Name="FK__DataPasie__id_ru__3C69FB99" Association="Self.FK__DataPasie__id_ru__3C69FB99">
             <End Role="RumahSakit" EntitySet="RumahSakit" />
             <End Role="DataPasien" EntitySet="DataPasien" />
           </AssociationSet>
-          <AssociationSet Name="FK__DataPasie__id_va__403A8C7D" Association="Self.FK__DataPasie__id_va__403A8C7D">
+          <AssociationSet Name="FK__DataPasie__id_va__3D5E1FD2" Association="Self.FK__DataPasie__id_va__3D5E1FD2">
             <End Role="DataVaksin" EntitySet="DataVaksin" />
             <End Role="DataPasien" EntitySet="DataPasien" />
           </AssociationSet>
@@ -218,13 +198,9 @@
             <End Role="Produsen" EntitySet="Produsen" />
             <End Role="DataVaksin" EntitySet="DataVaksin" />
           </AssociationSet>
-          <AssociationSet Name="FK__Distribut__id_ru__398D8EEE" Association="Self.FK__Distribut__id_ru__398D8EEE">
+          <AssociationSet Name="FK__DataVaksi__id_ru__37A5467C" Association="Self.FK__DataVaksi__id_ru__37A5467C">
             <End Role="RumahSakit" EntitySet="RumahSakit" />
-            <End Role="DistributedVaksin" EntitySet="DistributedVaksin" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Distribut__id_va__3A81B327" Association="Self.FK__Distribut__id_va__3A81B327">
             <End Role="DataVaksin" EntitySet="DataVaksin" />
-            <End Role="DistributedVaksin" EntitySet="DistributedVaksin" />
           </AssociationSet>
           <AssociationSet Name="FK__Masyaraka__id_da__300424B4" Association="Self.FK__Masyaraka__id_da__300424B4">
             <End Role="DataPenduduk" EntitySet="DataPenduduk" />
@@ -252,11 +228,11 @@
           <Property Name="id_penduduk" Type="Int32" />
           <Property Name="id_rumahsakit" Type="Int32" />
           <Property Name="id_vaksin" Type="Int32" />
-          <Property Name="nik" Type="Int32" />
+          <Property Name="nik" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="tgl_terimavaksin" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="DataPenduduk" Relationship="Self.FK__DataPasie__id_pe__3E52440B" FromRole="DataPasien" ToRole="DataPenduduk" />
-          <NavigationProperty Name="RumahSakit" Relationship="Self.FK__DataPasie__id_ru__3F466844" FromRole="DataPasien" ToRole="RumahSakit" />
-          <NavigationProperty Name="DataVaksin" Relationship="Self.FK__DataPasie__id_va__403A8C7D" FromRole="DataPasien" ToRole="DataVaksin" />
+          <NavigationProperty Name="DataPenduduk" Relationship="Self.FK__DataPasie__id_pe__3B75D760" FromRole="DataPasien" ToRole="DataPenduduk" />
+          <NavigationProperty Name="RumahSakit" Relationship="Self.FK__DataPasie__id_ru__3C69FB99" FromRole="DataPasien" ToRole="RumahSakit" />
+          <NavigationProperty Name="DataVaksin" Relationship="Self.FK__DataPasie__id_va__3D5E1FD2" FromRole="DataPasien" ToRole="DataVaksin" />
         </EntityType>
         <EntityType Name="DataPenduduk">
           <Key>
@@ -268,7 +244,7 @@
           <Property Name="nik" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="alamat" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="jenis_kelamin" Type="String" MaxLength="127" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="DataPasien" Relationship="Self.FK__DataPasie__id_pe__3E52440B" FromRole="DataPenduduk" ToRole="DataPasien" />
+          <NavigationProperty Name="DataPasien" Relationship="Self.FK__DataPasie__id_pe__3B75D760" FromRole="DataPenduduk" ToRole="DataPasien" />
           <NavigationProperty Name="Pemerintah" Relationship="Self.FK__DataPendu__id_pe__2D27B809" FromRole="DataPenduduk" ToRole="Pemerintah" />
           <NavigationProperty Name="Masyarakat" Relationship="Self.FK__Masyaraka__id_da__300424B4" FromRole="DataPenduduk" ToRole="Masyarakat" />
         </EntityType>
@@ -278,15 +254,16 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_produsen" Type="Int32" />
+          <Property Name="id_rumahsakit_penerima" Type="Int32" />
           <Property Name="no_registrasi" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="nama" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="tgl_pembuatan" Type="DateTime" Precision="3" />
           <Property Name="tgl_terima" Type="DateTime" Precision="0" />
           <Property Name="jumlah" Type="Int32" />
           <Property Name="jumlah_pakai" Type="Int32" />
-          <NavigationProperty Name="DataPasien" Relationship="Self.FK__DataPasie__id_va__403A8C7D" FromRole="DataVaksin" ToRole="DataPasien" />
+          <NavigationProperty Name="DataPasien" Relationship="Self.FK__DataPasie__id_va__3D5E1FD2" FromRole="DataVaksin" ToRole="DataPasien" />
           <NavigationProperty Name="Produsen" Relationship="Self.FK__DataVaksi__id_pr__36B12243" FromRole="DataVaksin" ToRole="Produsen" />
-          <NavigationProperty Name="RumahSakit" Relationship="Self.DistributedVaksin" FromRole="DataVaksin" ToRole="RumahSakit" />
+          <NavigationProperty Name="RumahSakit" Relationship="Self.FK__DataVaksi__id_ru__37A5467C" FromRole="DataVaksin" ToRole="RumahSakit" />
         </EntityType>
         <EntityType Name="Masyarakat">
           <Key>
@@ -326,10 +303,10 @@
           <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="nama" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="alamat" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="DataPasien" Relationship="Self.FK__DataPasie__id_ru__3F466844" FromRole="RumahSakit" ToRole="DataPasien" />
-          <NavigationProperty Name="DataVaksin" Relationship="Self.DistributedVaksin" FromRole="RumahSakit" ToRole="DataVaksin" />
+          <NavigationProperty Name="DataPasien" Relationship="Self.FK__DataPasie__id_ru__3C69FB99" FromRole="RumahSakit" ToRole="DataPasien" />
+          <NavigationProperty Name="DataVaksin" Relationship="Self.FK__DataVaksi__id_ru__37A5467C" FromRole="RumahSakit" ToRole="DataVaksin" />
         </EntityType>
-        <Association Name="FK__DataPasie__id_pe__3E52440B">
+        <Association Name="FK__DataPasie__id_pe__3B75D760">
           <End Role="DataPenduduk" Type="Self.DataPenduduk" Multiplicity="0..1" />
           <End Role="DataPasien" Type="Self.DataPasien" Multiplicity="*" />
           <ReferentialConstraint>
@@ -341,7 +318,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DataPasie__id_ru__3F466844">
+        <Association Name="FK__DataPasie__id_ru__3C69FB99">
           <End Role="RumahSakit" Type="Self.RumahSakit" Multiplicity="0..1" />
           <End Role="DataPasien" Type="Self.DataPasien" Multiplicity="*" />
           <ReferentialConstraint>
@@ -353,7 +330,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DataPasie__id_va__403A8C7D">
+        <Association Name="FK__DataPasie__id_va__3D5E1FD2">
           <End Role="DataVaksin" Type="Self.DataVaksin" Multiplicity="0..1" />
           <End Role="DataPasien" Type="Self.DataPasien" Multiplicity="*" />
           <ReferentialConstraint>
@@ -401,9 +378,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="DistributedVaksin">
-          <End Role="RumahSakit" Type="Self.RumahSakit" Multiplicity="*" />
+        <Association Name="FK__DataVaksi__id_ru__37A5467C">
+          <End Role="RumahSakit" Type="Self.RumahSakit" Multiplicity="0..1" />
           <End Role="DataVaksin" Type="Self.DataVaksin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RumahSakit">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DataVaksin">
+              <PropertyRef Name="id_rumahsakit_penerima" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DBVaksinEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="BPOM" EntityType="Self.BPOM" />
@@ -414,15 +399,15 @@
           <EntitySet Name="Pemerintah" EntityType="Self.Pemerintah" />
           <EntitySet Name="Produsen" EntityType="Self.Produsen" />
           <EntitySet Name="RumahSakit" EntityType="Self.RumahSakit" />
-          <AssociationSet Name="FK__DataPasie__id_pe__3E52440B" Association="Self.FK__DataPasie__id_pe__3E52440B">
+          <AssociationSet Name="FK__DataPasie__id_pe__3B75D760" Association="Self.FK__DataPasie__id_pe__3B75D760">
             <End Role="DataPenduduk" EntitySet="DataPenduduk" />
             <End Role="DataPasien" EntitySet="DataPasien" />
           </AssociationSet>
-          <AssociationSet Name="FK__DataPasie__id_ru__3F466844" Association="Self.FK__DataPasie__id_ru__3F466844">
+          <AssociationSet Name="FK__DataPasie__id_ru__3C69FB99" Association="Self.FK__DataPasie__id_ru__3C69FB99">
             <End Role="RumahSakit" EntitySet="RumahSakit" />
             <End Role="DataPasien" EntitySet="DataPasien" />
           </AssociationSet>
-          <AssociationSet Name="FK__DataPasie__id_va__403A8C7D" Association="Self.FK__DataPasie__id_va__403A8C7D">
+          <AssociationSet Name="FK__DataPasie__id_va__3D5E1FD2" Association="Self.FK__DataPasie__id_va__3D5E1FD2">
             <End Role="DataVaksin" EntitySet="DataVaksin" />
             <End Role="DataPasien" EntitySet="DataPasien" />
           </AssociationSet>
@@ -438,7 +423,7 @@
             <End Role="Produsen" EntitySet="Produsen" />
             <End Role="DataVaksin" EntitySet="DataVaksin" />
           </AssociationSet>
-          <AssociationSet Name="DistributedVaksin" Association="Self.DistributedVaksin">
+          <AssociationSet Name="FK__DataVaksi__id_ru__37A5467C" Association="Self.FK__DataVaksi__id_ru__37A5467C">
             <End Role="RumahSakit" EntitySet="RumahSakit" />
             <End Role="DataVaksin" EntitySet="DataVaksin" />
           </AssociationSet>
@@ -487,6 +472,7 @@
               <MappingFragment StoreEntitySet="DataVaksin">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_produsen" ColumnName="id_produsen" />
+                <ScalarProperty Name="id_rumahsakit_penerima" ColumnName="id_rumahsakit_penerima" />
                 <ScalarProperty Name="no_registrasi" ColumnName="no_registrasi" />
                 <ScalarProperty Name="nama" ColumnName="nama" />
                 <ScalarProperty Name="tgl_pembuatan" ColumnName="tgl_pembuatan" />
@@ -536,14 +522,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="DistributedVaksin" TypeName="DBVaksinModel.DistributedVaksin" StoreEntitySet="DistributedVaksin">
-            <EndProperty Name="RumahSakit">
-              <ScalarProperty Name="id" ColumnName="id_rumahsakit" />
-            </EndProperty>
-            <EndProperty Name="DataVaksin">
-              <ScalarProperty Name="id" ColumnName="id_vaksin" />
-            </EndProperty>
-          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

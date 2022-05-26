@@ -12,15 +12,22 @@ namespace Tracking_Vaksin_Services
     public class ServiceModelProdusen : IServiceModelProdusen
     {
 
-        public bool login(ref Produsen produsen, string username, string password, ref int StatusCode, ref string Message)
+        public bool login(ref ProdusenS produsenS, string username, string password, ref int StatusCode, ref string Message)
         {
             using (DBVaksinEntities db = new DBVaksinEntities())
             {
                 try
                 {
-                    produsen = db.Produsen.Where(x => x.username == username && x.password == password).FirstOrDefault();
-                    if (produsen != null)
+                    if (db.Produsen.Any(x => x.username == username && x.password == password))
                     {
+                        Produsen produsen = db.Produsen.Where(x => x.username == username && x.password == password).FirstOrDefault();
+                        produsenS = new ProdusenS()
+                        {
+                            id = produsen.id,
+                            nama = produsen.nama,
+                            username = produsen.username
+                        };
+                        
                         StatusCode = 200;
                         Message = "Login Success";
                         return true;
@@ -68,15 +75,22 @@ namespace Tracking_Vaksin_Services
             };
         }
 
-        public bool getProdusenById(ref Produsen produsen, int id, ref int StatusCode, ref string Message)
+        public bool getProdusenById(ref ProdusenS produsenS, int id, ref int StatusCode, ref string Message)
         {
             using (DBVaksinEntities db = new DBVaksinEntities())
             {
                 try
                 {
-                    produsen = db.Produsen.Where(x => x.id == id).FirstOrDefault();
-                    if (produsen != null)
+                    if (db.Produsen.Any(x => x.id == id))
                     {
+                        Produsen produsen = db.Produsen.Where(x => x.id == id).FirstOrDefault();
+                        produsenS = new ProdusenS()
+                        {
+                            id = produsen.id,
+                            nama = produsen.nama,
+                            username = produsen.username
+                        };
+                        
                         StatusCode = 200;
                         Message = "Berhasil mengambil data";
                         return true;

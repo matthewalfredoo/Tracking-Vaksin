@@ -12,13 +12,23 @@ namespace Tracking_Vaksin_Services
     // NOTE: In order to launch WCF Test Client for testing this service, please select ServiceModelDataPenduduk.svc or ServiceModelDataPenduduk.svc.cs at the Solution Explorer and start debugging.
     public class ServiceModelDataPenduduk : IServiceModelDataPenduduk
     {
-        public bool createDataPenduduk(ref DataPenduduk dataPenduduk, ref int StatusCode, ref string Message)
+        public bool createDataPenduduk(ref DataPendudukS dataPenduduk, ref int StatusCode, ref string Message)
         {
             using(DBVaksinEntities db = new DBVaksinEntities())
             {
                 try
                 {
-                    db.DataPenduduk.Add(dataPenduduk);
+                    DataPenduduk pendudukCreate = new DataPenduduk
+                    {
+                        id = dataPenduduk.id,
+                        id_pemerintah = dataPenduduk.id_pemerintah,
+                        nama = dataPenduduk.nama,
+                        nik = dataPenduduk.nik,
+                        alamat = dataPenduduk.alamat,
+                        jenis_kelamin = dataPenduduk.jenis_kelamin
+                    };
+                    db.DataPenduduk.Add(pendudukCreate);
+                    
                     db.SaveChanges();
                     StatusCode = 200;
                     Message = "Data penduduk berhasil ditambahkan";
@@ -39,9 +49,10 @@ namespace Tracking_Vaksin_Services
             {
                 try
                 {
-                    DataPenduduk dataPendudukDihapus = db.DataPenduduk.Find(id);
-                    db.DataPenduduk.Remove(dataPendudukDihapus);
+                    DataPenduduk dataPendudukDelete = db.DataPenduduk.Find(id);
+                    db.DataPenduduk.Remove(dataPendudukDelete);
                     db.SaveChanges();
+                    
                     StatusCode = 200;
                     Message = "Data penduduk berhasil dihapus";
                     return true;
@@ -55,13 +66,27 @@ namespace Tracking_Vaksin_Services
             }
         }
 
-        public bool getAllDataPenduduk(ref IEnumerable<DataPenduduk> dataPenduduk, ref int StatusCode, ref string Message)
+        public bool getAllDataPenduduk(ref List<DataPendudukS> dataPenduduk, ref int StatusCode, ref string Message)
         {
             using (DBVaksinEntities db = new DBVaksinEntities())
             {
                 try
                 {
-                    dataPenduduk = db.DataPenduduk;
+                    var dataPendudukGetALl= db.DataPenduduk;
+                    foreach (var data in dataPendudukGetALl)
+                    {
+                        DataPendudukS dataPendudukS = new DataPendudukS
+                        {
+                            id = data.id,
+                            id_pemerintah = data.id_pemerintah,
+                            nama = data.nama,
+                            nik = data.nik,
+                            alamat = data.alamat,
+                            jenis_kelamin = data.jenis_kelamin
+                        };
+                        dataPenduduk.Add(dataPendudukS);
+                    }
+                    
                     StatusCode = 200;
                     Message = "Data penduduk berhasil diambil";
                     return true;
@@ -75,15 +100,25 @@ namespace Tracking_Vaksin_Services
             }
         }
 
-        public bool getDataPendudukByID(ref DataPenduduk dataPenduduk, int ID, ref int StatusCode, ref string Message)
+        public bool getDataPendudukByID(ref DataPendudukS dataPendudukS, int ID, ref int StatusCode, ref string Message)
         {
             using (DBVaksinEntities db = new DBVaksinEntities())
             {
                 try
                 {
-                    dataPenduduk = db.DataPenduduk.Find(ID);
-                    if (dataPenduduk != null)
+                    DataPenduduk dataPendudukGetByID = db.DataPenduduk.Find(ID);
+                    if (dataPendudukGetByID != null)
                     {
+                        dataPendudukS = new DataPendudukS
+                        {
+                            id = dataPendudukGetByID.id,
+                            id_pemerintah = dataPendudukGetByID.id_pemerintah,
+                            nama = dataPendudukGetByID.nama,
+                            nik = dataPendudukGetByID.nik,
+                            alamat = dataPendudukGetByID.alamat,
+                            jenis_kelamin = dataPendudukGetByID.jenis_kelamin
+                        };
+                        
                         StatusCode = 200;
                         Message = "Data penduduk berhasil diambil";
                         return true;
@@ -104,15 +139,25 @@ namespace Tracking_Vaksin_Services
             }
         }
 
-        public bool getDataPendudukByNIK(ref DataPenduduk dataPenduduk, string NIK, ref int StatusCode, ref string Message)
+        public bool getDataPendudukByNIK(ref DataPendudukS dataPenduduk, string NIK, ref int StatusCode, ref string Message)
         {
             using(DBVaksinEntities db = new DBVaksinEntities())
             {
                 try
                 {
-                    dataPenduduk = db.DataPenduduk.Where(x => x.nik == NIK).FirstOrDefault();
+                    DataPenduduk dataPendudukGetByNIK= db.DataPenduduk.Where(x => x.nik == NIK).FirstOrDefault();
                     if (dataPenduduk != null)
                     {
+                        dataPenduduk = new DataPendudukS
+                        {
+                            id = dataPendudukGetByNIK.id,
+                            id_pemerintah = dataPendudukGetByNIK.id_pemerintah,
+                            nama = dataPendudukGetByNIK.nama,
+                            nik = dataPendudukGetByNIK.nik,
+                            alamat = dataPendudukGetByNIK.alamat,
+                            jenis_kelamin = dataPendudukGetByNIK.jenis_kelamin
+                        };
+                        
                         StatusCode = 200;
                         Message = "Data penduduk berhasil diambil";
                         return true;
@@ -133,20 +178,30 @@ namespace Tracking_Vaksin_Services
             }
         }
 
-        public bool updateDataPenduduk(ref DataPenduduk dataPenduduk, ref int StatusCode, ref string Message)
+        public bool updateDataPenduduk(ref DataPendudukS dataPendudukS, ref int StatusCode, ref string Message)
         {
             using(DBVaksinEntities db = new DBVaksinEntities())
             {
                 try
                 {
-                    DataPenduduk dataPendudukDiedit = db.DataPenduduk.Find(dataPenduduk.id);
-                    dataPendudukDiedit.nama = dataPenduduk.nama;
-                    dataPendudukDiedit.alamat = dataPenduduk.alamat;
-                    dataPendudukDiedit.jenis_kelamin = dataPenduduk.jenis_kelamin;
+                    DataPenduduk dataPendudukDiedit = db.DataPenduduk.Find(dataPendudukS.id);
+                    dataPendudukDiedit.nama = dataPendudukS.nama;
+                    dataPendudukDiedit.alamat = dataPendudukS.alamat;
+                    dataPendudukDiedit.jenis_kelamin = dataPendudukS.jenis_kelamin;
                     db.DataPenduduk.Attach(dataPendudukDiedit);
                     db.Entry(dataPendudukDiedit).State = EntityState.Modified;
                     db.SaveChanges();
 
+                    dataPendudukS = new DataPendudukS
+                    {
+                        id = dataPendudukDiedit.id,
+                        id_pemerintah = dataPendudukDiedit.id_pemerintah,
+                        nama = dataPendudukDiedit.nama,
+                        nik = dataPendudukDiedit.nik,
+                        alamat = dataPendudukDiedit.alamat,
+                        jenis_kelamin = dataPendudukDiedit.jenis_kelamin
+                    };
+                    
                     StatusCode = 200;
                     Message = "Data penduduk berhasil diperbarui";
                     return true;

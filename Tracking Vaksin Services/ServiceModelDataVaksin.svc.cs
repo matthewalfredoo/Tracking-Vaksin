@@ -12,21 +12,32 @@ namespace Tracking_Vaksin_Services
     // NOTE: In order to launch WCF Test Client for testing this service, please select ServiceModelDataVaksin.svc or ServiceModelDataVaksin.svc.cs at the Solution Explorer and start debugging.
     public class ServiceModelDataVaksin : IServiceModelDataVaksin
     {
-        public bool createDataVaksin(DataVaksin dataVaksin, ref int StatusCode, ref string Message)
+        public bool createDataVaksin(DataVaksinS dataVaksinS, ref int StatusCode, ref string Message)
         {
             using(DBVaksinEntities db = new DBVaksinEntities())
             {
                 try
                 {
-                    DataVaksin dataVaksinValidation = db.DataVaksin.Where(x => x.no_registrasi == dataVaksin.no_registrasi).FirstOrDefault();
-                    if(dataVaksinValidation != null)
+                    if(db.DataVaksin.Any(x => x.no_registrasi == dataVaksinS.no_registrasi))
                     {
                         StatusCode = 400;
-                        Message = "Data Vaksin sudah ada";
+                        Message = "Data Vaksin dengan nomor registrasi tersebut sudah ada";
                         return false;
                     }
                     
-                    db.DataVaksin.Add(dataVaksin);
+                    DataVaksin dataVaksinCreate = new DataVaksin
+                    {
+                        id = dataVaksinS.id,
+                        id_produsen = dataVaksinS.id_produsen,
+                        id_rumahsakit_penerima = dataVaksinS.id_rumahsakit_penerima,
+                        no_registrasi = dataVaksinS.no_registrasi,
+                        nama = dataVaksinS.nama,
+                        tgl_pembuatan = dataVaksinS.tgl_pembuatan,
+                        tgl_terima = dataVaksinS.tgl_terima,
+                        jumlah = dataVaksinS.jumlah
+                    };
+                    
+                    db.DataVaksin.Add(dataVaksinCreate);
                     db.SaveChanges();
                     StatusCode = 200;
                     Message = "Berhasil menambahkan data vaksin";
@@ -47,18 +58,21 @@ namespace Tracking_Vaksin_Services
             {
                 try
                 {
-                    DataVaksin dataVaksinDihapus = db.DataVaksin.Where(x => x.id == id).FirstOrDefault();
-                    if (dataVaksinDihapus == null)
+                    if (db.DataVaksin.Any(x => x.id == id))
+                    {
+                        DataVaksin dataVaksinDelete = db.DataVaksin.Find(id);
+                        db.DataVaksin.Remove(dataVaksinDelete);
+                        db.SaveChanges();
+                        StatusCode = 200;
+                        Message = "Berhasil menghapus data vaksin";
+                        return true;
+                    }
+                    else
                     {
                         StatusCode = 404;
-                        Message = "Data vaksin tidak ditemukan";
+                        Message = "Data vaksin dengan id tersebut tidak ditemukan";
                         return false;
                     }
-                    db.DataVaksin.Remove(dataVaksinDihapus);
-                    db.SaveChanges();
-                    StatusCode = 200;
-                    Message = "Berhasil menghapus data vaksin";
-                    return true;
                 }
                 catch (Exception ex)
                 {
@@ -69,13 +83,29 @@ namespace Tracking_Vaksin_Services
             }
         }            
 
-        public bool getAllDataVaksin(ref IEnumerable<DataVaksin> dataVaksin, ref int StatusCode, ref string Message)
+        public bool getAllDataVaksin(ref List<DataVaksinS> dataVaksinS, ref int StatusCode, ref string Message)
         {
             using(DBVaksinEntities db = new DBVaksinEntities())
             {
                 try
                 {
-                    dataVaksin = db.DataVaksin;
+                    var dataVaksinGetAll = db.DataVaksin;
+                    foreach (var data in dataVaksinGetAll)
+                    {
+                        DataVaksinS dataVaksin = new DataVaksinS
+                        {
+                            id = data.id,
+                            id_produsen = data.id_produsen,
+                            id_rumahsakit_penerima = data.id_rumahsakit_penerima,
+                            no_registrasi = data.no_registrasi,
+                            nama = data.nama,
+                            tgl_pembuatan = data.tgl_pembuatan,
+                            tgl_terima = data.tgl_terima,
+                            jumlah = data.jumlah
+                        };
+                        dataVaksinS.Add(dataVaksin);
+                    }
+                    
                     StatusCode = 200;
                     Message = "Berhasil mengambil data vaksin";
                     return true;
@@ -89,22 +119,37 @@ namespace Tracking_Vaksin_Services
             }
         }
 
-        public bool getDataVaksinByID(ref DataVaksin dataVaksin, int id, ref int StatusCode, ref string Message)
+        public bool getDataVaksinByID(ref DataVaksinS dataVaksinS, int id, ref int StatusCode, ref string Message)
         {
             using (DBVaksinEntities db = new DBVaksinEntities())
             {
                 try
                 {
-                    dataVaksin = db.DataVaksin.Where(x => x.id == id).FirstOrDefault();
-                    if (dataVaksin == null)
+                    if (db.DataVaksin.Any(x => x.id == id))
+                    {
+                        DataVaksin dataVaksinGetByID = db.DataVaksin.Find(id);
+                        dataVaksinS = new DataVaksinS
+                        {
+                            id = dataVaksinGetByID.id,
+                            id_produsen = dataVaksinGetByID.id_produsen,
+                            id_rumahsakit_penerima = dataVaksinGetByID.id_rumahsakit_penerima,
+                            no_registrasi = dataVaksinGetByID.no_registrasi,
+                            nama = dataVaksinGetByID.nama,
+                            tgl_pembuatan = dataVaksinGetByID.tgl_pembuatan,
+                            tgl_terima = dataVaksinGetByID.tgl_terima,
+                            jumlah = dataVaksinGetByID.jumlah
+                        };
+                        
+                        StatusCode = 200;
+                        Message = "Berhasil mengambil data vaksin";
+                        return true;
+                    }
+                    else
                     {
                         StatusCode = 404;
-                        Message = "Data vaksin tidak ditemukan";
+                        Message = "Data vaksin dengan id tersebut tidak ditemukan";
                         return false;
                     }
-                    StatusCode = 200;
-                    Message = "Berhasil mengambil data vaksin";
-                    return true;
                 }
                 catch (Exception ex)
                 {
@@ -115,27 +160,31 @@ namespace Tracking_Vaksin_Services
             }
         }
 
-        public bool updateDataVaksin(DataVaksin dataVaksin, ref int StatusCode, ref string Message)
+        public bool updateDataVaksin(DataVaksinS dataVaksinS, ref int StatusCode, ref string Message)
         {
             using (DBVaksinEntities db = new DBVaksinEntities())
             {
                 try
                 {
-                    DataVaksin dataVaksinDiedit = db.DataVaksin.Where(x => x.id == dataVaksin.id).FirstOrDefault();
-                    if (dataVaksinDiedit == null)
+                    if (db.DataVaksin.Any(x => x.id == dataVaksinS.id))
+                    {
+                        DataVaksin dataVaksinUpdate = db.DataVaksin.Find(dataVaksinS.id);
+                        dataVaksinUpdate.nama = dataVaksinS.nama;
+                        dataVaksinUpdate.tgl_pembuatan = dataVaksinS.tgl_pembuatan;
+                        dataVaksinUpdate.tgl_terima = dataVaksinS.tgl_terima;
+                        dataVaksinUpdate.jumlah = dataVaksinS.jumlah;
+                        db.SaveChanges();
+                        
+                        StatusCode = 200;
+                        Message = "Berhasil mengubah data vaksin";
+                        return true;
+                    }
+                    else
                     {
                         StatusCode = 404;
-                        Message = "Data vaksin tidak ditemukan";
+                        Message = "Data vaksin dengan id tersebut tidak ditemukan";
                         return false;
                     }
-                    dataVaksinDiedit.nama = dataVaksin.nama;
-                    dataVaksinDiedit.jumlah = dataVaksin.jumlah;
-                    db.DataVaksin.Attach(dataVaksinDiedit);
-                    db.Entry(dataVaksinDiedit).State = EntityState.Modified;
-
-                    StatusCode = 200;
-                    Message = "Berhasil memperbarui data vaksin";
-                    return true;
                 }
                 catch (Exception ex)
                 {

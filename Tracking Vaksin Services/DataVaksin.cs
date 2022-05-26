@@ -18,11 +18,11 @@ namespace Tracking_Vaksin_Services
         public DataVaksin()
         {
             this.DataPasien = new HashSet<DataPasien>();
-            this.RumahSakit = new HashSet<RumahSakit>();
         }
     
         public int id { get; set; }
         public Nullable<int> id_produsen { get; set; }
+        public Nullable<int> id_rumahsakit_penerima { get; set; }
         public string no_registrasi { get; set; }
         public string nama { get; set; }
         public Nullable<System.DateTime> tgl_pembuatan { get; set; }
@@ -33,7 +33,6 @@ namespace Tracking_Vaksin_Services
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DataPasien> DataPasien { get; set; }
         public virtual Produsen Produsen { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RumahSakit> RumahSakit { get; set; }
+        public virtual RumahSakit RumahSakit { get; set; }
     }
 }

@@ -15,8 +15,19 @@ namespace Tracking_Vaksin_Services
         bool register(string username, string password, string nama, ref int StatusCode, ref string Message);
 
         [OperationContract]
-        bool login(ref Produsen produsen, string username, string password, ref int StatusCode, ref string Message);
+        bool login(ref ProdusenS produsen, string username, string password, ref int StatusCode, ref string Message);
         [OperationContract]
-        bool getProdusenById(ref Produsen produsen, int id, ref int StatusCode, ref string Message);
+        bool getProdusenById(ref ProdusenS produsen, int id, ref int StatusCode, ref string Message);
+    }
+
+    [DataContract]
+    public class ProdusenS
+    {
+        [DataMember]
+        public int id { get; set; }
+        [DataMember]
+        public string username { get; set; }
+        [DataMember]
+        public string nama { get; set; }
     }
 }

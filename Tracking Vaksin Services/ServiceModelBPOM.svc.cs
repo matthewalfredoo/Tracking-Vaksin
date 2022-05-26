@@ -11,15 +11,21 @@ namespace Tracking_Vaksin_Services
     // NOTE: In order to launch WCF Test Client for testing this service, please select ServiceModelBPOM.svc or ServiceModelBPOM.svc.cs at the Solution Explorer and start debugging.
     public class ServiceModelBPOM : IServiceModelBPOM
     {
-        public bool login(ref BPOM bpom, string username, string password, ref int StatusCode, ref string Message)
+        public bool login(ref BPOMS bpomS, string username, string password, ref int StatusCode, ref string Message)
         {
             using(DBVaksinEntities db = new DBVaksinEntities())
             {
                 try
                 {
-                    bpom = db.BPOM.Where(x => x.username == username && x.password == password).FirstOrDefault();
-                    if (bpom != null)
+                    if (db.BPOM.Any(x => x.username == username && x.password == password))
                     {
+                        BPOM bpom = db.BPOM.Where(x => x.username == username && x.password == password).FirstOrDefault();
+                        bpomS = new BPOMS
+                        {
+                            id = bpom.id,
+                            username = bpom.username
+                        };
+                        
                         StatusCode = 200;
                         Message = "Login Success";
                         return true;

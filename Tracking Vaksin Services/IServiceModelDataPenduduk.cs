@@ -12,21 +12,39 @@ namespace Tracking_Vaksin_Services
     public interface IServiceModelDataPenduduk
     {
         [OperationContract]
-        bool getAllDataPenduduk(ref IEnumerable<DataPenduduk> dataPenduduk, ref int StatusCode, ref string Message);
+        bool getAllDataPenduduk(ref List<DataPendudukS> dataPenduduk, ref int StatusCode, ref string Message);
 
         [OperationContract]
-        bool getDataPendudukByID(ref DataPenduduk dataPenduduk, int ID, ref int StatusCode, ref string Message);
+        bool getDataPendudukByID(ref DataPendudukS dataPenduduk, int ID, ref int StatusCode, ref string Message);
 
         [OperationContract]
-        bool getDataPendudukByNIK(ref DataPenduduk dataPenduduk, string NIK, ref int StatusCode, ref string Message);
+        bool getDataPendudukByNIK(ref DataPendudukS dataPenduduk, string NIK, ref int StatusCode, ref string Message);
 
         [OperationContract]
-        bool createDataPenduduk(ref DataPenduduk dataPenduduk, ref int StatusCode, ref string Message);
+        bool createDataPenduduk(ref DataPendudukS dataPenduduk, ref int StatusCode, ref string Message);
 
         [OperationContract]
-        bool updateDataPenduduk(ref DataPenduduk dataPenduduk, ref int StatusCode, ref string Message);
+        bool updateDataPenduduk(ref DataPendudukS dataPenduduk, ref int StatusCode, ref string Message);
 
         [OperationContract]
         bool deleteDataPenduduk(int id, ref int StatusCode, ref string Message);
+    }
+
+    [DataContract]
+    [KnownType(typeof(List<DataPendudukS>))]
+    public class DataPendudukS
+    {
+        [DataMember]
+        public int id { get; set; }
+        [DataMember]
+        public Nullable<int> id_pemerintah { get; set; }
+        [DataMember]
+        public string nama { get; set; }
+        [DataMember]
+        public string nik { get; set; }
+        [DataMember]
+        public string alamat { get; set; }
+        [DataMember]
+        public string jenis_kelamin { get; set; }
     }
 }

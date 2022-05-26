@@ -4,8 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b8111ec889d24325a2f15f3dfebb87aa" Name="Diagram1">
-        <EntityTypeShape EntityType="DBVaksinModel.BPOM" Width="1.5" PointX="5.75" PointY="9" IsExpanded="true" />
+      <Diagram DiagramId="e29f28856c7b434e8e549da7dfb2a360" Name="Diagram1">
+        <EntityTypeShape EntityType="DBVaksinModel.BPOM" Width="1.5" PointX="5.75" PointY="8.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DBVaksinModel.DataPasien" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DBVaksinModel.DataPenduduk" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="DBVaksinModel.DataVaksin" Width="1.5" PointX="6" PointY="4.125" IsExpanded="true" />
@@ -13,13 +13,13 @@
         <EntityTypeShape EntityType="DBVaksinModel.Pemerintah" Width="1.5" PointX="1.5" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DBVaksinModel.Produsen" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBVaksinModel.RumahSakit" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
-        <AssociationConnector Association="DBVaksinModel.FK__DataPasie__id_pe__3E52440B" ManuallyRouted="false" />
-        <AssociationConnector Association="DBVaksinModel.FK__DataPasie__id_ru__3F466844" ManuallyRouted="false" />
-        <AssociationConnector Association="DBVaksinModel.FK__DataPasie__id_va__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="DBVaksinModel.FK__DataPasie__id_pe__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="DBVaksinModel.FK__DataPasie__id_ru__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="DBVaksinModel.FK__DataPasie__id_va__3D5E1FD2" ManuallyRouted="false" />
         <AssociationConnector Association="DBVaksinModel.FK__DataPendu__id_pe__2D27B809" ManuallyRouted="false" />
         <AssociationConnector Association="DBVaksinModel.FK__Masyaraka__id_da__300424B4" ManuallyRouted="false" />
         <AssociationConnector Association="DBVaksinModel.FK__DataVaksi__id_pr__36B12243" ManuallyRouted="false" />
-        <AssociationConnector Association="DBVaksinModel.DistributedVaksin" ManuallyRouted="false" />
+        <AssociationConnector Association="DBVaksinModel.FK__DataVaksi__id_ru__37A5467C" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

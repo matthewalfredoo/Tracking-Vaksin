@@ -18,7 +18,7 @@ namespace Tracking_Vaksin_Services
         public Nullable<int> id_penduduk { get; set; }
         public Nullable<int> id_rumahsakit { get; set; }
         public Nullable<int> id_vaksin { get; set; }
-        public Nullable<int> nik { get; set; }
+        public string nik { get; set; }
         public Nullable<System.DateTime> tgl_terimavaksin { get; set; }
     
         public virtual DataPenduduk DataPenduduk { get; set; }

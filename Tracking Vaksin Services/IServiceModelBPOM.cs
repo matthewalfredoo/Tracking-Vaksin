@@ -12,6 +12,15 @@ namespace Tracking_Vaksin_Services
     public interface IServiceModelBPOM
     {
         [OperationContract]
-        bool login(ref BPOM bpom, string username, string password, ref int StatusCode, ref string Message);
+        bool login(ref BPOMS bpomS, string username, string password, ref int StatusCode, ref string Message);
+    }
+
+    [DataContract]
+    public class BPOMS
+    {
+        [DataMember]
+        public int id { get; set; }
+        [DataMember]
+        public string username { get; set; }
     }
 }

@@ -11,7 +11,7 @@ namespace Tracking_Vaksin_Services
     // NOTE: In order to launch WCF Test Client for testing this service, please select ServiceModelPemerintah.svc or ServiceModelPemerintah.svc.cs at the Solution Explorer and start debugging.
     public class ServiceModelPemerintah : IServiceModelPemerintah
     {
-        public bool login(ref Pemerintah pemerintah, string username, string password, ref int StatusCode, ref string message)
+        public bool login(ref PemerintahS pemerintahS, string username, string password, ref int StatusCode, ref string message)
         {
             try
             {
@@ -19,6 +19,12 @@ namespace Tracking_Vaksin_Services
                 {
                     if (db.Pemerintah.Any(x => x.username == username && x.password == password))
                     {
+                        Pemerintah pemerintah = db.Pemerintah.Where(x => x.username == username && x.password == password).FirstOrDefault();
+                        pemerintahS = new PemerintahS
+                        {
+                            id = pemerintah.id,
+                            username = username
+                        };
                         StatusCode = 200;
                         message = "Login Success";
                         return true;

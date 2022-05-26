@@ -11,25 +11,42 @@ namespace Tracking_Vaksin_Services
     // NOTE: In order to launch WCF Test Client for testing this service, please select ServiceModelMasyarakat.svc or ServiceModelMasyarakat.svc.cs at the Solution Explorer and start debugging.
     public class ServiceModelMasyarakat : IServiceModelMasyarakat
     {
-        public bool login(ref Masyarakat masyarakat, ref DataPenduduk dataPenduduk, string username, string password, ref int StatusCode, ref string Message)
+        public bool login(ref MasyarakatS masyarakatS, ref DataPendudukS dataPendudukS, string username, string password, ref int StatusCode, ref string Message)
         {
             using (DBVaksinEntities db = new DBVaksinEntities())
             {
                 try
                 {
-                    Masyarakat masyarakatLogin = db.Masyarakat.Where(x => x.username == username && x.password == password).FirstOrDefault();
-                    if (masyarakatLogin != null)
+                    if (db.Masyarakat.Any(x => x.username == username && x.password == password))
                     {
-                        masyarakat = masyarakatLogin;
-                        dataPenduduk = db.DataPenduduk.Where(x => x.id == masyarakatLogin.id_data_penduduk).FirstOrDefault();
+                        Masyarakat masyarakatLogin = db.Masyarakat.Where(x => x.username == username && x.password == password).FirstOrDefault();
+                        masyarakatS = new MasyarakatS
+                        {
+                            id = masyarakatLogin.id,
+                            id_data_penduduk = masyarakatLogin.id_data_penduduk,
+                            username = masyarakatLogin.username
+                        };
+
+                        int? idDataPenduduk = masyarakatLogin.id_data_penduduk;
+                        DataPenduduk dataPendudukLogin = db.DataPenduduk.Where(x => x.id == idDataPenduduk).FirstOrDefault();
+                        dataPendudukS = new DataPendudukS
+                        {
+                            id = dataPendudukLogin.id,
+                            id_pemerintah = dataPendudukLogin.id_pemerintah,
+                            nama = dataPendudukLogin.nama,
+                            nik = dataPendudukLogin.nik,
+                            alamat = dataPendudukLogin.alamat,
+                            jenis_kelamin = dataPendudukLogin.jenis_kelamin
+                        };
+                        
                         StatusCode = 200;
-                        Message = "Login Success";
+                        Message = "Berhasil login";
                         return true;
                     }
                     else
                     {
                         StatusCode = 404;
-                        Message = "Login Failed";
+                        Message = "Kombinasi username dan password salah";
                         return false;
                     }
                 }
@@ -48,27 +65,34 @@ namespace Tracking_Vaksin_Services
             {
                 try
                 {
-                    DataPenduduk dataPenduduk = db.DataPenduduk.Where(x => x.nik == nik).FirstOrDefault();
-                    if (dataPenduduk != null)
+                    if (!db.DataPenduduk.Any(x => x.nik == nik))
                     {
-                        Masyarakat masyarakatRegister = new Masyarakat
-                        {
-                            username = username,
-                            password = password,
-                            id_data_penduduk = dataPenduduk.id
-                        };
-                        db.Masyarakat.Add(masyarakatRegister);
-                        db.SaveChanges();
-                        StatusCode = 200;
-                        Message = "Berhasil membuat akun baru";
-                        return true;
-                    }
-                    else
-                    {
-                        StatusCode = 404;
-                        Message = "NIK tersebut tidak ditemukan";
+                        StatusCode = 400;
+                        Message = "NIK tersebut belum terdaftar";
                         return false;
                     }
+                    
+                    DataPenduduk dataPenduduk = db.DataPenduduk.Where(x => x.nik == nik).FirstOrDefault();
+                    if (db.Masyarakat.Any(x => x.id_data_penduduk == dataPenduduk.id))
+                    {
+                        StatusCode = 400;
+                        Message = "NIK tersebut sudah terdaftar pada akun lain";
+                        return false;
+                    }
+
+                    
+                    Masyarakat masyarakatRegister = new Masyarakat
+                    {
+                        username = username,
+                        password = password,
+                        id_data_penduduk = dataPenduduk.id
+                    };
+
+                    db.Masyarakat.Add(masyarakatRegister);
+                    db.SaveChanges();
+                    StatusCode = 200;
+                    Message = "Berhasil membuat akun baru";
+                    return true;
                 }
                 catch (Exception ex)
                 {
