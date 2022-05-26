@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="Tracking_Vaksin_Services.ServiceModelMasyarakat" CodeBehind="ServiceModelMasyarakat.svc.cs" %>
