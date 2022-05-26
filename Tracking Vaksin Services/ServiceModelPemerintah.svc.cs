@@ -17,17 +17,16 @@ namespace Tracking_Vaksin_Services
             {
                 using(DBVaksinEntities db = new DBVaksinEntities())
                 {
-                    pemerintah = db.Pemerintah.Where(x => x.username == username && x.password == password).FirstOrDefault();
-                    if(pemerintah != null)
+                    if (db.Pemerintah.Any(x => x.username == username && x.password == password))
                     {
                         StatusCode = 200;
-                        message = "Success";
+                        message = "Login Success";
                         return true;
                     }
                     else
                     {
                         StatusCode = 404;
-                        message = "Username or Password is wrong";
+                        message = "Login Failed";
                         return false;
                     }
                 }
