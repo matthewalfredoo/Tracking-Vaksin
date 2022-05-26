@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracking Vaksin Services", "Tracking Vaksin Services\Tracking Vaksin Services.csproj", "{FF553A62-F531-44F0-BC8E-F3D879FAC8A8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracking Vaksin", "Tracking Vaksin\Tracking Vaksin.csproj", "{B50EC424-416B-402B-9C38-B427A8679AC1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{FF553A62-F531-44F0-BC8E-F3D879FAC8A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF553A62-F531-44F0-BC8E-F3D879FAC8A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF553A62-F531-44F0-BC8E-F3D879FAC8A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B50EC424-416B-402B-9C38-B427A8679AC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B50EC424-416B-402B-9C38-B427A8679AC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B50EC424-416B-402B-9C38-B427A8679AC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B50EC424-416B-402B-9C38-B427A8679AC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
