@@ -15,4 +15,8 @@
     <PackageReference Include="System.ServiceModel.Security" Version="4.8.*" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Tracking Vaksin Services\Tracking Vaksin Services.csproj" />
+  </ItemGroup>
+
 </Project>
