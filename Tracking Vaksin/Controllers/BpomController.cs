@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
-using Tracking_Vaksin.Models;
 using Tracking_Vaksin_Services;
 using ServiceModelBPOM;
 
@@ -52,7 +50,7 @@ namespace Tracking_Vaksin.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home");
         }
 
         public bool IsLoggedIn()

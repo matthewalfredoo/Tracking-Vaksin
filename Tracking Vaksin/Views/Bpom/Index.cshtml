@@ -5,8 +5,15 @@
      ViewData["Title"] = "Home Page BPOM";
 }
 
-<p>Erere</p>
-<p>@ViewBag.username</p>
-<p>@HttpContextAccessor.HttpContext.Session.GetString("_Username")</p> <!-- BELUM BERES, USERNAME DARI SESSION TIDAK BISA DIAKSES -->
-
-<a asp-controller="Bpom" asp-action="Logout">Keluar</a>
+@{
+    string username = HttpContextAccessor.HttpContext.Session.GetString("_Username") ?? "";
+}
+@if(username != "")
+{
+    <h3>Selamat Datang, @username!</h3>
+}
+else
+{
+    <h3>Selamat Datang</h3>
+    <span>Silahkan </span> <a asp-action="Login">login di sini</a>
+}

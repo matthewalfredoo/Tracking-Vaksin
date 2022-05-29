@@ -1,0 +1,55 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@model List<ServiceModelDataVaksin.DataVaksinS>
+
+@{
+     ViewData["Title"] = "Home Page Produsen";
+}
+
+@{
+    string nama = HttpContextAccessor.HttpContext.Session.GetString("_Nama") ?? "";
+}
+@if(nama == "")
+{
+    <h3>Selamat Datang</h3>
+    <span>Silahkan </span> <a asp-action="Login">login di sini</a>
+}
+else
+{
+    <h3>Selamat Datang @nama</h3>
+    <span>Anda dapat mengelola data vaksin yang Anda produksi di halaman ini</span>
+    <br/>
+
+    <a asp-action="RegistrasiVaksin">Registrasi Vaksin</a>
+
+    <br/>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama Vaksin</th>
+                <th>Nomor Registrasi</th>
+                <th>Tanggal Pembuatan</th>
+                <th>Jumlah Produksi</th>
+                <th>Jumlah Pakai</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.id</td>
+                    <td>@item.nama</td>
+                    <td>@item.no_registrasi</td>
+                    <td>@item.tgl_pembuatan</td>
+                    <td>@item.jumlah</td>
+                    <td>@item.jumlah_pakai</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.id">Edit</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

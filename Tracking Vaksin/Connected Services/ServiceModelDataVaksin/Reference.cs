@@ -9,7 +9,150 @@
 
 namespace ServiceModelDataVaksin
 {
+    using System.Runtime.Serialization;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DataVaksinS", Namespace="http://schemas.datacontract.org/2004/07/Tracking_Vaksin_Services")]
+    public partial class DataVaksinS : object
+    {
+        
+        private int idField;
+        
+        private System.Nullable<int> id_produsenField;
+        
+        private System.Nullable<int> id_rumahsakit_penerimaField;
+        
+        private System.Nullable<int> jumlahField;
+        
+        private System.Nullable<int> jumlah_pakaiField;
+        
+        private string namaField;
+        
+        private string no_registrasiField;
+        
+        private System.Nullable<System.DateTime> tgl_pembuatanField;
+        
+        private System.Nullable<System.DateTime> tgl_terimaField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> id_produsen
+        {
+            get
+            {
+                return this.id_produsenField;
+            }
+            set
+            {
+                this.id_produsenField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> id_rumahsakit_penerima
+        {
+            get
+            {
+                return this.id_rumahsakit_penerimaField;
+            }
+            set
+            {
+                this.id_rumahsakit_penerimaField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> jumlah
+        {
+            get
+            {
+                return this.jumlahField;
+            }
+            set
+            {
+                this.jumlahField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> jumlah_pakai
+        {
+            get
+            {
+                return this.jumlah_pakaiField;
+            }
+            set
+            {
+                this.jumlah_pakaiField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string nama
+        {
+            get
+            {
+                return this.namaField;
+            }
+            set
+            {
+                this.namaField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string no_registrasi
+        {
+            get
+            {
+                return this.no_registrasiField;
+            }
+            set
+            {
+                this.no_registrasiField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> tgl_pembuatan
+        {
+            get
+            {
+                return this.tgl_pembuatanField;
+            }
+            set
+            {
+                this.tgl_pembuatanField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> tgl_terima
+        {
+            get
+            {
+                return this.tgl_terimaField;
+            }
+            set
+            {
+                this.tgl_terimaField = value;
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceModelDataVaksin.IServiceModelDataVaksin")]
@@ -29,6 +172,13 @@ namespace ServiceModelDataVaksin
         // CODEGEN: Generating message contract since the operation has multiple return values.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceModelDataVaksin/getDataVaksinByID", ReplyAction="http://tempuri.org/IServiceModelDataVaksin/getDataVaksinByIDResponse")]
         System.Threading.Tasks.Task<ServiceModelDataVaksin.getDataVaksinByIDResponse> getDataVaksinByIDAsync(ServiceModelDataVaksin.getDataVaksinByIDRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceModelDataVaksin/getDataVaksinByIDProdusen", ReplyAction="http://tempuri.org/IServiceModelDataVaksin/getDataVaksinByIDProdusenResponse")]
+        ServiceModelDataVaksin.getDataVaksinByIDProdusenResponse getDataVaksinByIDProdusen(ServiceModelDataVaksin.getDataVaksinByIDProdusenRequest request);
+        
+        // CODEGEN: Generating message contract since the operation has multiple return values.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceModelDataVaksin/getDataVaksinByIDProdusen", ReplyAction="http://tempuri.org/IServiceModelDataVaksin/getDataVaksinByIDProdusenResponse")]
+        System.Threading.Tasks.Task<ServiceModelDataVaksin.getDataVaksinByIDProdusenResponse> getDataVaksinByIDProdusenAsync(ServiceModelDataVaksin.getDataVaksinByIDProdusenRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceModelDataVaksin/createDataVaksin", ReplyAction="http://tempuri.org/IServiceModelDataVaksin/createDataVaksinResponse")]
         ServiceModelDataVaksin.createDataVaksinResponse createDataVaksin(ServiceModelDataVaksin.createDataVaksinRequest request);
@@ -59,7 +209,7 @@ namespace ServiceModelDataVaksin
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public System.Collections.Generic.List<Tracking_Vaksin_Services.DataVaksinS> dataVaksinS;
+        public System.Collections.Generic.List<ServiceModelDataVaksin.DataVaksinS> dataVaksinS;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
         public int StatusCode;
@@ -71,7 +221,7 @@ namespace ServiceModelDataVaksin
         {
         }
         
-        public getAllDataVaksinRequest(System.Collections.Generic.List<Tracking_Vaksin_Services.DataVaksinS> dataVaksinS, int StatusCode, string Message)
+        public getAllDataVaksinRequest(System.Collections.Generic.List<ServiceModelDataVaksin.DataVaksinS> dataVaksinS, int StatusCode, string Message)
         {
             this.dataVaksinS = dataVaksinS;
             this.StatusCode = StatusCode;
@@ -89,7 +239,7 @@ namespace ServiceModelDataVaksin
         public bool getAllDataVaksinResult;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
-        public System.Collections.Generic.List<Tracking_Vaksin_Services.DataVaksinS> dataVaksinS;
+        public System.Collections.Generic.List<ServiceModelDataVaksin.DataVaksinS> dataVaksinS;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
         public int StatusCode;
@@ -101,7 +251,7 @@ namespace ServiceModelDataVaksin
         {
         }
         
-        public getAllDataVaksinResponse(bool getAllDataVaksinResult, System.Collections.Generic.List<Tracking_Vaksin_Services.DataVaksinS> dataVaksinS, int StatusCode, string Message)
+        public getAllDataVaksinResponse(bool getAllDataVaksinResult, System.Collections.Generic.List<ServiceModelDataVaksin.DataVaksinS> dataVaksinS, int StatusCode, string Message)
         {
             this.getAllDataVaksinResult = getAllDataVaksinResult;
             this.dataVaksinS = dataVaksinS;
@@ -117,7 +267,7 @@ namespace ServiceModelDataVaksin
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public Tracking_Vaksin_Services.DataVaksinS dataVaksinS;
+        public ServiceModelDataVaksin.DataVaksinS dataVaksinS;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
         public int id;
@@ -132,7 +282,7 @@ namespace ServiceModelDataVaksin
         {
         }
         
-        public getDataVaksinByIDRequest(Tracking_Vaksin_Services.DataVaksinS dataVaksinS, int id, int StatusCode, string Message)
+        public getDataVaksinByIDRequest(ServiceModelDataVaksin.DataVaksinS dataVaksinS, int id, int StatusCode, string Message)
         {
             this.dataVaksinS = dataVaksinS;
             this.id = id;
@@ -151,7 +301,7 @@ namespace ServiceModelDataVaksin
         public bool getDataVaksinByIDResult;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
-        public Tracking_Vaksin_Services.DataVaksinS dataVaksinS;
+        public ServiceModelDataVaksin.DataVaksinS dataVaksinS;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
         public int StatusCode;
@@ -163,9 +313,71 @@ namespace ServiceModelDataVaksin
         {
         }
         
-        public getDataVaksinByIDResponse(bool getDataVaksinByIDResult, Tracking_Vaksin_Services.DataVaksinS dataVaksinS, int StatusCode, string Message)
+        public getDataVaksinByIDResponse(bool getDataVaksinByIDResult, ServiceModelDataVaksin.DataVaksinS dataVaksinS, int StatusCode, string Message)
         {
             this.getDataVaksinByIDResult = getDataVaksinByIDResult;
+            this.dataVaksinS = dataVaksinS;
+            this.StatusCode = StatusCode;
+            this.Message = Message;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="getDataVaksinByIDProdusen", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class getDataVaksinByIDProdusenRequest
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public System.Collections.Generic.List<ServiceModelDataVaksin.DataVaksinS> dataVaksinS;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public int idProdusen;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
+        public int StatusCode;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=3)]
+        public string Message;
+        
+        public getDataVaksinByIDProdusenRequest()
+        {
+        }
+        
+        public getDataVaksinByIDProdusenRequest(System.Collections.Generic.List<ServiceModelDataVaksin.DataVaksinS> dataVaksinS, int idProdusen, int StatusCode, string Message)
+        {
+            this.dataVaksinS = dataVaksinS;
+            this.idProdusen = idProdusen;
+            this.StatusCode = StatusCode;
+            this.Message = Message;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="getDataVaksinByIDProdusenResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class getDataVaksinByIDProdusenResponse
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public bool getDataVaksinByIDProdusenResult;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public System.Collections.Generic.List<ServiceModelDataVaksin.DataVaksinS> dataVaksinS;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
+        public int StatusCode;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=3)]
+        public string Message;
+        
+        public getDataVaksinByIDProdusenResponse()
+        {
+        }
+        
+        public getDataVaksinByIDProdusenResponse(bool getDataVaksinByIDProdusenResult, System.Collections.Generic.List<ServiceModelDataVaksin.DataVaksinS> dataVaksinS, int StatusCode, string Message)
+        {
+            this.getDataVaksinByIDProdusenResult = getDataVaksinByIDProdusenResult;
             this.dataVaksinS = dataVaksinS;
             this.StatusCode = StatusCode;
             this.Message = Message;
@@ -179,7 +391,7 @@ namespace ServiceModelDataVaksin
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public Tracking_Vaksin_Services.DataVaksinS dataVaksinS;
+        public ServiceModelDataVaksin.DataVaksinS dataVaksinS;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
         public int StatusCode;
@@ -191,7 +403,7 @@ namespace ServiceModelDataVaksin
         {
         }
         
-        public createDataVaksinRequest(Tracking_Vaksin_Services.DataVaksinS dataVaksinS, int StatusCode, string Message)
+        public createDataVaksinRequest(ServiceModelDataVaksin.DataVaksinS dataVaksinS, int StatusCode, string Message)
         {
             this.dataVaksinS = dataVaksinS;
             this.StatusCode = StatusCode;
@@ -233,7 +445,7 @@ namespace ServiceModelDataVaksin
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public Tracking_Vaksin_Services.DataVaksinS dataVaksinS;
+        public ServiceModelDataVaksin.DataVaksinS dataVaksinS;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
         public int StatusCode;
@@ -245,7 +457,7 @@ namespace ServiceModelDataVaksin
         {
         }
         
-        public updateDataVaksinRequest(Tracking_Vaksin_Services.DataVaksinS dataVaksinS, int StatusCode, string Message)
+        public updateDataVaksinRequest(ServiceModelDataVaksin.DataVaksinS dataVaksinS, int StatusCode, string Message)
         {
             this.dataVaksinS = dataVaksinS;
             this.StatusCode = StatusCode;
@@ -390,7 +602,7 @@ namespace ServiceModelDataVaksin
             return base.Channel.getAllDataVaksin(request);
         }
         
-        public bool getAllDataVaksin(ref System.Collections.Generic.List<Tracking_Vaksin_Services.DataVaksinS> dataVaksinS, ref int StatusCode, ref string Message)
+        public bool getAllDataVaksin(ref System.Collections.Generic.List<ServiceModelDataVaksin.DataVaksinS> dataVaksinS, ref int StatusCode, ref string Message)
         {
             ServiceModelDataVaksin.getAllDataVaksinRequest inValue = new ServiceModelDataVaksin.getAllDataVaksinRequest();
             inValue.dataVaksinS = dataVaksinS;
@@ -414,7 +626,7 @@ namespace ServiceModelDataVaksin
             return base.Channel.getDataVaksinByID(request);
         }
         
-        public bool getDataVaksinByID(ref Tracking_Vaksin_Services.DataVaksinS dataVaksinS, int id, ref int StatusCode, ref string Message)
+        public bool getDataVaksinByID(ref ServiceModelDataVaksin.DataVaksinS dataVaksinS, int id, ref int StatusCode, ref string Message)
         {
             ServiceModelDataVaksin.getDataVaksinByIDRequest inValue = new ServiceModelDataVaksin.getDataVaksinByIDRequest();
             inValue.dataVaksinS = dataVaksinS;
@@ -434,12 +646,37 @@ namespace ServiceModelDataVaksin
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        ServiceModelDataVaksin.getDataVaksinByIDProdusenResponse ServiceModelDataVaksin.IServiceModelDataVaksin.getDataVaksinByIDProdusen(ServiceModelDataVaksin.getDataVaksinByIDProdusenRequest request)
+        {
+            return base.Channel.getDataVaksinByIDProdusen(request);
+        }
+        
+        public bool getDataVaksinByIDProdusen(ref System.Collections.Generic.List<ServiceModelDataVaksin.DataVaksinS> dataVaksinS, int idProdusen, ref int StatusCode, ref string Message)
+        {
+            ServiceModelDataVaksin.getDataVaksinByIDProdusenRequest inValue = new ServiceModelDataVaksin.getDataVaksinByIDProdusenRequest();
+            inValue.dataVaksinS = dataVaksinS;
+            inValue.idProdusen = idProdusen;
+            inValue.StatusCode = StatusCode;
+            inValue.Message = Message;
+            ServiceModelDataVaksin.getDataVaksinByIDProdusenResponse retVal = ((ServiceModelDataVaksin.IServiceModelDataVaksin)(this)).getDataVaksinByIDProdusen(inValue);
+            dataVaksinS = retVal.dataVaksinS;
+            StatusCode = retVal.StatusCode;
+            Message = retVal.Message;
+            return retVal.getDataVaksinByIDProdusenResult;
+        }
+        
+        public System.Threading.Tasks.Task<ServiceModelDataVaksin.getDataVaksinByIDProdusenResponse> getDataVaksinByIDProdusenAsync(ServiceModelDataVaksin.getDataVaksinByIDProdusenRequest request)
+        {
+            return base.Channel.getDataVaksinByIDProdusenAsync(request);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         ServiceModelDataVaksin.createDataVaksinResponse ServiceModelDataVaksin.IServiceModelDataVaksin.createDataVaksin(ServiceModelDataVaksin.createDataVaksinRequest request)
         {
             return base.Channel.createDataVaksin(request);
         }
         
-        public bool createDataVaksin(Tracking_Vaksin_Services.DataVaksinS dataVaksinS, ref int StatusCode, ref string Message)
+        public bool createDataVaksin(ServiceModelDataVaksin.DataVaksinS dataVaksinS, ref int StatusCode, ref string Message)
         {
             ServiceModelDataVaksin.createDataVaksinRequest inValue = new ServiceModelDataVaksin.createDataVaksinRequest();
             inValue.dataVaksinS = dataVaksinS;
@@ -462,7 +699,7 @@ namespace ServiceModelDataVaksin
             return base.Channel.updateDataVaksin(request);
         }
         
-        public bool updateDataVaksin(Tracking_Vaksin_Services.DataVaksinS dataVaksinS, ref int StatusCode, ref string Message)
+        public bool updateDataVaksin(ServiceModelDataVaksin.DataVaksinS dataVaksinS, ref int StatusCode, ref string Message)
         {
             ServiceModelDataVaksin.updateDataVaksinRequest inValue = new ServiceModelDataVaksin.updateDataVaksinRequest();
             inValue.dataVaksinS = dataVaksinS;

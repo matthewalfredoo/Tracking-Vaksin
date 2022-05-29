@@ -18,6 +18,13 @@ namespace Tracking_Vaksin_Services
             {
                 try
                 {
+                    if (db.DataVaksin.Any(x => x.no_registrasi == Vaksin.no_registrasi))
+                    {
+                        StatusCode = 400;
+                        Message = "Data Vaksin dengan nomor registrasi tersebut sudah ada";
+                        return false;
+                    }
+                    
                     db.DataVaksin.Add(Vaksin);
                     db.SaveChanges();
                     StatusCode = 200;

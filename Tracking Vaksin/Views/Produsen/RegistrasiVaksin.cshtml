@@ -1,0 +1,44 @@
+﻿@model ServiceBPOM.DataVaksin
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+     ViewData["Title"] = "Registrasi Vaksin";
+}
+
+<h3>Registrasi Vaksin Baru</h3>
+@{
+    if (ViewBag.Message != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.Message
+        </div>
+        ViewBag.Message = null;
+    }
+}
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="RegistrasiVaksin">
+            <div class="form-group mb-2">
+                <label asp-for="nama" class="control-label">Nama Vaksin</label>
+                <input asp-for="nama" class="form-control" required/>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="no_registrasi" class="control-label">Nomor Registrasi</label>
+                <input asp-for="no_registrasi" class="form-control" required/>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="tgl_pembuatan" class="control-label">Tanggal Pembuatan</label>
+                <input asp-for="tgl_pembuatan" class="form-control type="datetime" required/>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="jumlah" class="control-label">Jumlah Produksi</label>
+                <input asp-for="jumlah" class="form-control type="number" required/>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Registrasi" class="btn btn-primary mt-2 mb-2" />
+            </div>
+        </form>
+    </div>
+</div>

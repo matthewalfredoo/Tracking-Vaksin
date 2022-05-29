@@ -9,7 +9,822 @@
 
 namespace ServiceBPOM
 {
+    using System.Runtime.Serialization;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DataVaksin", Namespace="http://schemas.datacontract.org/2004/07/Tracking_Vaksin_Services")]
+    public partial class DataVaksin : object
+    {
+        
+        private System.Collections.Generic.List<ServiceBPOM.DataPasien> DataPasienField;
+        
+        private ServiceBPOM.Produsen ProdusenField;
+        
+        private ServiceBPOM.RumahSakit RumahSakitField;
+        
+        private int idField;
+        
+        private System.Nullable<int> id_produsenField;
+        
+        private System.Nullable<int> id_rumahsakit_penerimaField;
+        
+        private System.Nullable<int> jumlahField;
+        
+        private System.Nullable<int> jumlah_pakaiField;
+        
+        private string namaField;
+        
+        private string no_registrasiField;
+        
+        private System.Nullable<System.DateTime> tgl_pembuatanField;
+        
+        private System.Nullable<System.DateTime> tgl_terimaField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<ServiceBPOM.DataPasien> DataPasien
+        {
+            get
+            {
+                return this.DataPasienField;
+            }
+            set
+            {
+                this.DataPasienField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ServiceBPOM.Produsen Produsen
+        {
+            get
+            {
+                return this.ProdusenField;
+            }
+            set
+            {
+                this.ProdusenField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ServiceBPOM.RumahSakit RumahSakit
+        {
+            get
+            {
+                return this.RumahSakitField;
+            }
+            set
+            {
+                this.RumahSakitField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> id_produsen
+        {
+            get
+            {
+                return this.id_produsenField;
+            }
+            set
+            {
+                this.id_produsenField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> id_rumahsakit_penerima
+        {
+            get
+            {
+                return this.id_rumahsakit_penerimaField;
+            }
+            set
+            {
+                this.id_rumahsakit_penerimaField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> jumlah
+        {
+            get
+            {
+                return this.jumlahField;
+            }
+            set
+            {
+                this.jumlahField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> jumlah_pakai
+        {
+            get
+            {
+                return this.jumlah_pakaiField;
+            }
+            set
+            {
+                this.jumlah_pakaiField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string nama
+        {
+            get
+            {
+                return this.namaField;
+            }
+            set
+            {
+                this.namaField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string no_registrasi
+        {
+            get
+            {
+                return this.no_registrasiField;
+            }
+            set
+            {
+                this.no_registrasiField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> tgl_pembuatan
+        {
+            get
+            {
+                return this.tgl_pembuatanField;
+            }
+            set
+            {
+                this.tgl_pembuatanField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> tgl_terima
+        {
+            get
+            {
+                return this.tgl_terimaField;
+            }
+            set
+            {
+                this.tgl_terimaField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Produsen", Namespace="http://schemas.datacontract.org/2004/07/Tracking_Vaksin_Services")]
+    public partial class Produsen : object
+    {
+        
+        private System.Collections.Generic.List<ServiceBPOM.DataVaksin> DataVaksinField;
+        
+        private int idField;
+        
+        private string namaField;
+        
+        private string passwordField;
+        
+        private string usernameField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<ServiceBPOM.DataVaksin> DataVaksin
+        {
+            get
+            {
+                return this.DataVaksinField;
+            }
+            set
+            {
+                this.DataVaksinField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string nama
+        {
+            get
+            {
+                return this.namaField;
+            }
+            set
+            {
+                this.namaField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string password
+        {
+            get
+            {
+                return this.passwordField;
+            }
+            set
+            {
+                this.passwordField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string username
+        {
+            get
+            {
+                return this.usernameField;
+            }
+            set
+            {
+                this.usernameField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RumahSakit", Namespace="http://schemas.datacontract.org/2004/07/Tracking_Vaksin_Services")]
+    public partial class RumahSakit : object
+    {
+        
+        private System.Collections.Generic.List<ServiceBPOM.DataPasien> DataPasienField;
+        
+        private System.Collections.Generic.List<ServiceBPOM.DataVaksin> DataVaksinField;
+        
+        private string alamatField;
+        
+        private int idField;
+        
+        private string namaField;
+        
+        private string passwordField;
+        
+        private string usernameField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<ServiceBPOM.DataPasien> DataPasien
+        {
+            get
+            {
+                return this.DataPasienField;
+            }
+            set
+            {
+                this.DataPasienField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<ServiceBPOM.DataVaksin> DataVaksin
+        {
+            get
+            {
+                return this.DataVaksinField;
+            }
+            set
+            {
+                this.DataVaksinField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string alamat
+        {
+            get
+            {
+                return this.alamatField;
+            }
+            set
+            {
+                this.alamatField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string nama
+        {
+            get
+            {
+                return this.namaField;
+            }
+            set
+            {
+                this.namaField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string password
+        {
+            get
+            {
+                return this.passwordField;
+            }
+            set
+            {
+                this.passwordField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string username
+        {
+            get
+            {
+                return this.usernameField;
+            }
+            set
+            {
+                this.usernameField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DataPasien", Namespace="http://schemas.datacontract.org/2004/07/Tracking_Vaksin_Services")]
+    public partial class DataPasien : object
+    {
+        
+        private ServiceBPOM.DataPenduduk DataPendudukField;
+        
+        private ServiceBPOM.DataVaksin DataVaksinField;
+        
+        private ServiceBPOM.RumahSakit RumahSakitField;
+        
+        private int idField;
+        
+        private System.Nullable<int> id_pendudukField;
+        
+        private System.Nullable<int> id_rumahsakitField;
+        
+        private System.Nullable<int> id_vaksinField;
+        
+        private string nikField;
+        
+        private System.Nullable<System.DateTime> tgl_terimavaksinField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ServiceBPOM.DataPenduduk DataPenduduk
+        {
+            get
+            {
+                return this.DataPendudukField;
+            }
+            set
+            {
+                this.DataPendudukField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ServiceBPOM.DataVaksin DataVaksin
+        {
+            get
+            {
+                return this.DataVaksinField;
+            }
+            set
+            {
+                this.DataVaksinField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ServiceBPOM.RumahSakit RumahSakit
+        {
+            get
+            {
+                return this.RumahSakitField;
+            }
+            set
+            {
+                this.RumahSakitField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> id_penduduk
+        {
+            get
+            {
+                return this.id_pendudukField;
+            }
+            set
+            {
+                this.id_pendudukField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> id_rumahsakit
+        {
+            get
+            {
+                return this.id_rumahsakitField;
+            }
+            set
+            {
+                this.id_rumahsakitField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> id_vaksin
+        {
+            get
+            {
+                return this.id_vaksinField;
+            }
+            set
+            {
+                this.id_vaksinField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string nik
+        {
+            get
+            {
+                return this.nikField;
+            }
+            set
+            {
+                this.nikField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> tgl_terimavaksin
+        {
+            get
+            {
+                return this.tgl_terimavaksinField;
+            }
+            set
+            {
+                this.tgl_terimavaksinField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DataPenduduk", Namespace="http://schemas.datacontract.org/2004/07/Tracking_Vaksin_Services")]
+    public partial class DataPenduduk : object
+    {
+        
+        private System.Collections.Generic.List<ServiceBPOM.DataPasien> DataPasienField;
+        
+        private System.Collections.Generic.List<ServiceBPOM.Masyarakat> MasyarakatField;
+        
+        private ServiceBPOM.Pemerintah PemerintahField;
+        
+        private string alamatField;
+        
+        private int idField;
+        
+        private System.Nullable<int> id_pemerintahField;
+        
+        private string jenis_kelaminField;
+        
+        private string namaField;
+        
+        private string nikField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<ServiceBPOM.DataPasien> DataPasien
+        {
+            get
+            {
+                return this.DataPasienField;
+            }
+            set
+            {
+                this.DataPasienField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<ServiceBPOM.Masyarakat> Masyarakat
+        {
+            get
+            {
+                return this.MasyarakatField;
+            }
+            set
+            {
+                this.MasyarakatField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ServiceBPOM.Pemerintah Pemerintah
+        {
+            get
+            {
+                return this.PemerintahField;
+            }
+            set
+            {
+                this.PemerintahField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string alamat
+        {
+            get
+            {
+                return this.alamatField;
+            }
+            set
+            {
+                this.alamatField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> id_pemerintah
+        {
+            get
+            {
+                return this.id_pemerintahField;
+            }
+            set
+            {
+                this.id_pemerintahField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string jenis_kelamin
+        {
+            get
+            {
+                return this.jenis_kelaminField;
+            }
+            set
+            {
+                this.jenis_kelaminField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string nama
+        {
+            get
+            {
+                return this.namaField;
+            }
+            set
+            {
+                this.namaField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string nik
+        {
+            get
+            {
+                return this.nikField;
+            }
+            set
+            {
+                this.nikField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Pemerintah", Namespace="http://schemas.datacontract.org/2004/07/Tracking_Vaksin_Services")]
+    public partial class Pemerintah : object
+    {
+        
+        private System.Collections.Generic.List<ServiceBPOM.DataPenduduk> DataPendudukField;
+        
+        private int idField;
+        
+        private string passwordField;
+        
+        private string usernameField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<ServiceBPOM.DataPenduduk> DataPenduduk
+        {
+            get
+            {
+                return this.DataPendudukField;
+            }
+            set
+            {
+                this.DataPendudukField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string password
+        {
+            get
+            {
+                return this.passwordField;
+            }
+            set
+            {
+                this.passwordField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string username
+        {
+            get
+            {
+                return this.usernameField;
+            }
+            set
+            {
+                this.usernameField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Masyarakat", Namespace="http://schemas.datacontract.org/2004/07/Tracking_Vaksin_Services")]
+    public partial class Masyarakat : object
+    {
+        
+        private ServiceBPOM.DataPenduduk DataPendudukField;
+        
+        private int idField;
+        
+        private System.Nullable<int> id_data_pendudukField;
+        
+        private string passwordField;
+        
+        private string usernameField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ServiceBPOM.DataPenduduk DataPenduduk
+        {
+            get
+            {
+                return this.DataPendudukField;
+            }
+            set
+            {
+                this.DataPendudukField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> id_data_penduduk
+        {
+            get
+            {
+                return this.id_data_pendudukField;
+            }
+            set
+            {
+                this.id_data_pendudukField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string password
+        {
+            get
+            {
+                return this.passwordField;
+            }
+            set
+            {
+                this.passwordField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string username
+        {
+            get
+            {
+                return this.usernameField;
+            }
+            set
+            {
+                this.usernameField = value;
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceBPOM.IServiceBPOM")]
@@ -45,7 +860,7 @@ namespace ServiceBPOM
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public Tracking_Vaksin_Services.DataVaksin Vaksin;
+        public ServiceBPOM.DataVaksin Vaksin;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
         public int StatusCode;
@@ -57,7 +872,7 @@ namespace ServiceBPOM
         {
         }
         
-        public RegistrasiVaksinRequest(Tracking_Vaksin_Services.DataVaksin Vaksin, int StatusCode, string Message)
+        public RegistrasiVaksinRequest(ServiceBPOM.DataVaksin Vaksin, int StatusCode, string Message)
         {
             this.Vaksin = Vaksin;
             this.StatusCode = StatusCode;
@@ -264,7 +1079,7 @@ namespace ServiceBPOM
             return base.Channel.RegistrasiVaksin(request);
         }
         
-        public bool RegistrasiVaksin(Tracking_Vaksin_Services.DataVaksin Vaksin, ref int StatusCode, ref string Message)
+        public bool RegistrasiVaksin(ServiceBPOM.DataVaksin Vaksin, ref int StatusCode, ref string Message)
         {
             ServiceBPOM.RegistrasiVaksinRequest inValue = new ServiceBPOM.RegistrasiVaksinRequest();
             inValue.Vaksin = Vaksin;

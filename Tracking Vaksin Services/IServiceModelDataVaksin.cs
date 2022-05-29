@@ -16,6 +16,8 @@ namespace Tracking_Vaksin_Services
 
         [OperationContract]
         bool getDataVaksinByID(ref DataVaksinS dataVaksinS, int id, ref int StatusCode, ref string Message);
+        [OperationContract]
+        bool getDataVaksinByIDProdusen(ref List<DataVaksinS> dataVaksinS, int idProdusen, ref int StatusCode, ref string Message);
 
         [OperationContract]
         bool createDataVaksin(DataVaksinS dataVaksinS, ref int StatusCode, ref string Message);

@@ -101,7 +101,8 @@ namespace Tracking_Vaksin_Services
                             nama = data.nama,
                             tgl_pembuatan = data.tgl_pembuatan,
                             tgl_terima = data.tgl_terima,
-                            jumlah = data.jumlah
+                            jumlah = data.jumlah,
+                            jumlah_pakai = data.jumlah_pakai
                         };
                         dataVaksinS.Add(dataVaksin);
                     }
@@ -137,7 +138,8 @@ namespace Tracking_Vaksin_Services
                             nama = dataVaksinGetByID.nama,
                             tgl_pembuatan = dataVaksinGetByID.tgl_pembuatan,
                             tgl_terima = dataVaksinGetByID.tgl_terima,
-                            jumlah = dataVaksinGetByID.jumlah
+                            jumlah = dataVaksinGetByID.jumlah,
+                            jumlah_pakai = dataVaksinGetByID.jumlah_pakai
                         };
                         
                         StatusCode = 200;
@@ -150,6 +152,43 @@ namespace Tracking_Vaksin_Services
                         Message = "Data vaksin dengan id tersebut tidak ditemukan";
                         return false;
                     }
+                }
+                catch (Exception ex)
+                {
+                    StatusCode = 500;
+                    Message = ex.Message;
+                    return false;
+                }
+            }
+        }
+
+        public bool getDataVaksinByIDProdusen(ref List<DataVaksinS> dataVaksinS, int idProdusen, ref int StatusCode, ref string Message)
+        {
+            using (DBVaksinEntities db = new DBVaksinEntities())
+            {
+                try
+                {
+                    var dataVaksinGetByIDProdusen = db.DataVaksin.Where(x => x.id_produsen == idProdusen);
+                    foreach (var data in dataVaksinGetByIDProdusen)
+                    {
+                        DataVaksinS dataVaksin = new DataVaksinS
+                        {
+                            id = data.id,
+                            id_produsen = data.id_produsen,
+                            id_rumahsakit_penerima = data.id_rumahsakit_penerima,
+                            no_registrasi = data.no_registrasi,
+                            nama = data.nama,
+                            tgl_pembuatan = data.tgl_pembuatan,
+                            tgl_terima = data.tgl_terima,
+                            jumlah = data.jumlah,
+                            jumlah_pakai = data.jumlah_pakai
+                        };
+                        dataVaksinS.Add(dataVaksin);
+                    }
+
+                    StatusCode = 200;
+                    Message = "Berhasil mengambil data vaksin";
+                    return true;
                 }
                 catch (Exception ex)
                 {
