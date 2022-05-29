@@ -1,0 +1,12 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+     ViewData["Title"] = "Home Page BPOM";
+}
+
+<p>Erere</p>
+<p>@ViewBag.username</p>
+<p>@HttpContextAccessor.HttpContext.Session.GetString("_Username")</p> <!-- BELUM BERES, USERNAME DARI SESSION TIDAK BISA DIAKSES -->
+
+<a asp-controller="Bpom" asp-action="Logout">Keluar</a>
