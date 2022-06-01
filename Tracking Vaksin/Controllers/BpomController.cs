@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Tracking_Vaksin_Services;
 using ServiceModelBPOM;
+using ServiceModelProdusen;
+using ServiceModelDataVaksin;
 
 namespace Tracking_Vaksin.Controllers
 {
@@ -8,6 +10,8 @@ namespace Tracking_Vaksin.Controllers
     {
         private BPOMS bpomS = null;
         private ServiceModelBPOMClient serviceModelBPOMClient = new ServiceModelBPOMClient();
+        private List<ServiceModelDataVaksin.DataVaksinS> listBpomS = new List<ServiceModelDataVaksin.DataVaksinS>();
+        private ServiceModelDataVaksinClient serviceModelDataVaksinClient = new ServiceModelDataVaksinClient();
         private int StatusCode = 500;
         private string Message = "";
 
@@ -18,7 +22,13 @@ namespace Tracking_Vaksin.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.username = HttpContext.Session.GetString("_Username");
+            if (IsLoggedIn())
+            {
+                ViewBag.username = HttpContext.Session.GetString("_Username");
+                int idBpom = (int)HttpContext.Session.GetInt32(BpomController.ID_SESSION);
+                serviceModelDataVaksinClient.getAllDataVaksin(ref listBpomS, ref StatusCode, ref Message);
+                return View(listBpomS);
+            }
             return View();
         }
 
