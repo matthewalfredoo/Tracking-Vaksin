@@ -1,0 +1,64 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@model ServiceModelDataVaksin.DataVaksinS
+
+@{
+    ViewData["Title"] = "Home Page Pemerintah";
+}
+
+@{
+    string username = HttpContextAccessor.HttpContext.Session.GetString("_Username") ?? "";
+    string nama = HttpContextAccessor.HttpContext.Session.GetString("_Nama") ?? "";
+    string nik = HttpContextAccessor.HttpContext.Session.GetString("_Nik") ?? "";
+    string alamat = HttpContextAccessor.HttpContext.Session.GetString("_Alamat") ?? "";
+    string jenis_kelamin = HttpContextAccessor.HttpContext.Session.GetString("_JenisKelamin") ?? "";
+
+    string messagePasien = HttpContextAccessor.HttpContext.Session.GetString("_MessagePasien") ?? "";
+    string messageVaksin = HttpContextAccessor.HttpContext.Session.GetString("_MessageVaksin") ?? "";
+
+    string tanggalTerimaVaksin = HttpContextAccessor.HttpContext.Session.GetString("_TanggalTerimaVaksin") ?? "";
+
+    if (ViewBag.Message != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.Message
+        </div>
+        ViewBag.Message = null;
+    }
+}
+
+@{
+    if(username == "")
+    {
+        <h3>Selamat Datang</h3>
+        <span>Silahkan </span> <a asp-action="Login">login di sini</a>
+    }
+    else
+    {
+        <h3>Selamat Datang, @nama</h3
+        <br />
+        
+        <p>Nama: @nama</p>
+        <p>NIK: @nik</p>
+        <p>Alamat: @alamat</p>
+        <p>Jenis Kelamin: @jenis_kelamin</p>
+
+        if(messagePasien != "")
+        {
+            <p>@messagePasien</p>
+        }
+
+        if(messagePasien == "" && messageVaksin != "" && Model == null)
+        {
+            <p>@messageVaksin</p>
+        }
+
+        if(messageVaksin == "" && Model != null)
+        {
+            <p>Nama vaksin: @Model.nama</p>
+            <p>Nomor registrasi vaksin: @Model.no_registrasi</p>
+            <p>Tanggal Pembuatan: @Model.tgl_pembuatan</p>
+            <p>Tanggal Terima Vaksin: @tanggalTerimaVaksin</p>
+        }
+    }
+}
