@@ -1,0 +1,68 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@model List<ServiceModelDataPenduduk.DataPendudukS>
+
+@{
+    ViewData["Title"] = "Home Page Pemerintah";
+}
+
+@{
+    string username = HttpContextAccessor.HttpContext.Session.GetString("_Username") ?? "";
+    
+    if (ViewBag.Message != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.Message
+        </div>
+        ViewBag.Message = null;
+    }
+}
+@if (username == "")
+{
+    <h3>Selamat Datang</h3>
+    <span>Silahkan </span> <a asp-action="Login">login di sini</a>
+}
+else
+{
+    <h3>Selamat Datang, @username</h3>
+    <span>Anda dapat mengelola data penduduk di halaman ini</span>
+    <br />
+
+    <a asp-action="CreatePenduduk">Tambah Data Penduduk</a>
+
+    <br />
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>NIK</th>
+                <th>Nama</th>
+                <th>Alamat</th>
+                <th>Jenis Kelamin</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                if (Model != null)
+                {
+                    int i = 1;
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@i</td>
+                            <td>@item.nik</td>
+                            <td>@item.nama</td>
+                            <td>@item.alamat</td>
+                            <td>@item.jenis_kelamin</td>
+                            <td>
+                                <a asp-action="DeletePenduduk" asp-route-id="@item.id">Hapus</a>
+                            </td>
+                        </tr>
+                        i++;
+                    }
+                }
+            }
+        </tbody>
+    </table>
+}

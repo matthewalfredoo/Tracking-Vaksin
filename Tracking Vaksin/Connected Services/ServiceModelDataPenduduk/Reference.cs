@@ -9,7 +9,105 @@
 
 namespace ServiceModelDataPenduduk
 {
+    using System.Runtime.Serialization;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DataPendudukS", Namespace="http://schemas.datacontract.org/2004/07/Tracking_Vaksin_Services")]
+    public partial class DataPendudukS : object
+    {
+        
+        private string alamatField;
+        
+        private int idField;
+        
+        private System.Nullable<int> id_pemerintahField;
+        
+        private string jenis_kelaminField;
+        
+        private string namaField;
+        
+        private string nikField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string alamat
+        {
+            get
+            {
+                return this.alamatField;
+            }
+            set
+            {
+                this.alamatField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> id_pemerintah
+        {
+            get
+            {
+                return this.id_pemerintahField;
+            }
+            set
+            {
+                this.id_pemerintahField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string jenis_kelamin
+        {
+            get
+            {
+                return this.jenis_kelaminField;
+            }
+            set
+            {
+                this.jenis_kelaminField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string nama
+        {
+            get
+            {
+                return this.namaField;
+            }
+            set
+            {
+                this.namaField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string nik
+        {
+            get
+            {
+                return this.nikField;
+            }
+            set
+            {
+                this.nikField = value;
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceModelDataPenduduk.IServiceModelDataPenduduk")]
@@ -66,7 +164,7 @@ namespace ServiceModelDataPenduduk
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public System.Collections.Generic.List<Tracking_Vaksin_Services.DataPendudukS> dataPenduduk;
+        public System.Collections.Generic.List<ServiceModelDataPenduduk.DataPendudukS> dataPenduduk;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
         public int StatusCode;
@@ -78,7 +176,7 @@ namespace ServiceModelDataPenduduk
         {
         }
         
-        public getAllDataPendudukRequest(System.Collections.Generic.List<Tracking_Vaksin_Services.DataPendudukS> dataPenduduk, int StatusCode, string Message)
+        public getAllDataPendudukRequest(System.Collections.Generic.List<ServiceModelDataPenduduk.DataPendudukS> dataPenduduk, int StatusCode, string Message)
         {
             this.dataPenduduk = dataPenduduk;
             this.StatusCode = StatusCode;
@@ -96,7 +194,7 @@ namespace ServiceModelDataPenduduk
         public bool getAllDataPendudukResult;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
-        public System.Collections.Generic.List<Tracking_Vaksin_Services.DataPendudukS> dataPenduduk;
+        public System.Collections.Generic.List<ServiceModelDataPenduduk.DataPendudukS> dataPenduduk;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
         public int StatusCode;
@@ -108,7 +206,7 @@ namespace ServiceModelDataPenduduk
         {
         }
         
-        public getAllDataPendudukResponse(bool getAllDataPendudukResult, System.Collections.Generic.List<Tracking_Vaksin_Services.DataPendudukS> dataPenduduk, int StatusCode, string Message)
+        public getAllDataPendudukResponse(bool getAllDataPendudukResult, System.Collections.Generic.List<ServiceModelDataPenduduk.DataPendudukS> dataPenduduk, int StatusCode, string Message)
         {
             this.getAllDataPendudukResult = getAllDataPendudukResult;
             this.dataPenduduk = dataPenduduk;
@@ -124,7 +222,7 @@ namespace ServiceModelDataPenduduk
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public Tracking_Vaksin_Services.DataPendudukS dataPenduduk;
+        public ServiceModelDataPenduduk.DataPendudukS dataPenduduk;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
         public int ID;
@@ -139,7 +237,7 @@ namespace ServiceModelDataPenduduk
         {
         }
         
-        public getDataPendudukByIDRequest(Tracking_Vaksin_Services.DataPendudukS dataPenduduk, int ID, int StatusCode, string Message)
+        public getDataPendudukByIDRequest(ServiceModelDataPenduduk.DataPendudukS dataPenduduk, int ID, int StatusCode, string Message)
         {
             this.dataPenduduk = dataPenduduk;
             this.ID = ID;
@@ -158,7 +256,7 @@ namespace ServiceModelDataPenduduk
         public bool getDataPendudukByIDResult;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
-        public Tracking_Vaksin_Services.DataPendudukS dataPenduduk;
+        public ServiceModelDataPenduduk.DataPendudukS dataPenduduk;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
         public int StatusCode;
@@ -170,7 +268,7 @@ namespace ServiceModelDataPenduduk
         {
         }
         
-        public getDataPendudukByIDResponse(bool getDataPendudukByIDResult, Tracking_Vaksin_Services.DataPendudukS dataPenduduk, int StatusCode, string Message)
+        public getDataPendudukByIDResponse(bool getDataPendudukByIDResult, ServiceModelDataPenduduk.DataPendudukS dataPenduduk, int StatusCode, string Message)
         {
             this.getDataPendudukByIDResult = getDataPendudukByIDResult;
             this.dataPenduduk = dataPenduduk;
@@ -186,7 +284,7 @@ namespace ServiceModelDataPenduduk
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public Tracking_Vaksin_Services.DataPendudukS dataPenduduk;
+        public ServiceModelDataPenduduk.DataPendudukS dataPenduduk;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
         public string NIK;
@@ -201,7 +299,7 @@ namespace ServiceModelDataPenduduk
         {
         }
         
-        public getDataPendudukByNIKRequest(Tracking_Vaksin_Services.DataPendudukS dataPenduduk, string NIK, int StatusCode, string Message)
+        public getDataPendudukByNIKRequest(ServiceModelDataPenduduk.DataPendudukS dataPenduduk, string NIK, int StatusCode, string Message)
         {
             this.dataPenduduk = dataPenduduk;
             this.NIK = NIK;
@@ -220,7 +318,7 @@ namespace ServiceModelDataPenduduk
         public bool getDataPendudukByNIKResult;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
-        public Tracking_Vaksin_Services.DataPendudukS dataPenduduk;
+        public ServiceModelDataPenduduk.DataPendudukS dataPenduduk;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
         public int StatusCode;
@@ -232,7 +330,7 @@ namespace ServiceModelDataPenduduk
         {
         }
         
-        public getDataPendudukByNIKResponse(bool getDataPendudukByNIKResult, Tracking_Vaksin_Services.DataPendudukS dataPenduduk, int StatusCode, string Message)
+        public getDataPendudukByNIKResponse(bool getDataPendudukByNIKResult, ServiceModelDataPenduduk.DataPendudukS dataPenduduk, int StatusCode, string Message)
         {
             this.getDataPendudukByNIKResult = getDataPendudukByNIKResult;
             this.dataPenduduk = dataPenduduk;
@@ -248,7 +346,7 @@ namespace ServiceModelDataPenduduk
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public Tracking_Vaksin_Services.DataPendudukS dataPenduduk;
+        public ServiceModelDataPenduduk.DataPendudukS dataPenduduk;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
         public int StatusCode;
@@ -260,7 +358,7 @@ namespace ServiceModelDataPenduduk
         {
         }
         
-        public createDataPendudukRequest(Tracking_Vaksin_Services.DataPendudukS dataPenduduk, int StatusCode, string Message)
+        public createDataPendudukRequest(ServiceModelDataPenduduk.DataPendudukS dataPenduduk, int StatusCode, string Message)
         {
             this.dataPenduduk = dataPenduduk;
             this.StatusCode = StatusCode;
@@ -278,7 +376,7 @@ namespace ServiceModelDataPenduduk
         public bool createDataPendudukResult;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
-        public Tracking_Vaksin_Services.DataPendudukS dataPenduduk;
+        public ServiceModelDataPenduduk.DataPendudukS dataPenduduk;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
         public int StatusCode;
@@ -290,7 +388,7 @@ namespace ServiceModelDataPenduduk
         {
         }
         
-        public createDataPendudukResponse(bool createDataPendudukResult, Tracking_Vaksin_Services.DataPendudukS dataPenduduk, int StatusCode, string Message)
+        public createDataPendudukResponse(bool createDataPendudukResult, ServiceModelDataPenduduk.DataPendudukS dataPenduduk, int StatusCode, string Message)
         {
             this.createDataPendudukResult = createDataPendudukResult;
             this.dataPenduduk = dataPenduduk;
@@ -306,7 +404,7 @@ namespace ServiceModelDataPenduduk
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public Tracking_Vaksin_Services.DataPendudukS dataPenduduk;
+        public ServiceModelDataPenduduk.DataPendudukS dataPenduduk;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
         public int StatusCode;
@@ -318,7 +416,7 @@ namespace ServiceModelDataPenduduk
         {
         }
         
-        public updateDataPendudukRequest(Tracking_Vaksin_Services.DataPendudukS dataPenduduk, int StatusCode, string Message)
+        public updateDataPendudukRequest(ServiceModelDataPenduduk.DataPendudukS dataPenduduk, int StatusCode, string Message)
         {
             this.dataPenduduk = dataPenduduk;
             this.StatusCode = StatusCode;
@@ -336,7 +434,7 @@ namespace ServiceModelDataPenduduk
         public bool updateDataPendudukResult;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
-        public Tracking_Vaksin_Services.DataPendudukS dataPenduduk;
+        public ServiceModelDataPenduduk.DataPendudukS dataPenduduk;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
         public int StatusCode;
@@ -348,7 +446,7 @@ namespace ServiceModelDataPenduduk
         {
         }
         
-        public updateDataPendudukResponse(bool updateDataPendudukResult, Tracking_Vaksin_Services.DataPendudukS dataPenduduk, int StatusCode, string Message)
+        public updateDataPendudukResponse(bool updateDataPendudukResult, ServiceModelDataPenduduk.DataPendudukS dataPenduduk, int StatusCode, string Message)
         {
             this.updateDataPendudukResult = updateDataPendudukResult;
             this.dataPenduduk = dataPenduduk;
@@ -467,7 +565,7 @@ namespace ServiceModelDataPenduduk
             return base.Channel.getAllDataPenduduk(request);
         }
         
-        public bool getAllDataPenduduk(ref System.Collections.Generic.List<Tracking_Vaksin_Services.DataPendudukS> dataPenduduk, ref int StatusCode, ref string Message)
+        public bool getAllDataPenduduk(ref System.Collections.Generic.List<ServiceModelDataPenduduk.DataPendudukS> dataPenduduk, ref int StatusCode, ref string Message)
         {
             ServiceModelDataPenduduk.getAllDataPendudukRequest inValue = new ServiceModelDataPenduduk.getAllDataPendudukRequest();
             inValue.dataPenduduk = dataPenduduk;
@@ -491,7 +589,7 @@ namespace ServiceModelDataPenduduk
             return base.Channel.getDataPendudukByID(request);
         }
         
-        public bool getDataPendudukByID(ref Tracking_Vaksin_Services.DataPendudukS dataPenduduk, int ID, ref int StatusCode, ref string Message)
+        public bool getDataPendudukByID(ref ServiceModelDataPenduduk.DataPendudukS dataPenduduk, int ID, ref int StatusCode, ref string Message)
         {
             ServiceModelDataPenduduk.getDataPendudukByIDRequest inValue = new ServiceModelDataPenduduk.getDataPendudukByIDRequest();
             inValue.dataPenduduk = dataPenduduk;
@@ -516,7 +614,7 @@ namespace ServiceModelDataPenduduk
             return base.Channel.getDataPendudukByNIK(request);
         }
         
-        public bool getDataPendudukByNIK(ref Tracking_Vaksin_Services.DataPendudukS dataPenduduk, string NIK, ref int StatusCode, ref string Message)
+        public bool getDataPendudukByNIK(ref ServiceModelDataPenduduk.DataPendudukS dataPenduduk, string NIK, ref int StatusCode, ref string Message)
         {
             ServiceModelDataPenduduk.getDataPendudukByNIKRequest inValue = new ServiceModelDataPenduduk.getDataPendudukByNIKRequest();
             inValue.dataPenduduk = dataPenduduk;
@@ -541,7 +639,7 @@ namespace ServiceModelDataPenduduk
             return base.Channel.createDataPenduduk(request);
         }
         
-        public bool createDataPenduduk(ref Tracking_Vaksin_Services.DataPendudukS dataPenduduk, ref int StatusCode, ref string Message)
+        public bool createDataPenduduk(ref ServiceModelDataPenduduk.DataPendudukS dataPenduduk, ref int StatusCode, ref string Message)
         {
             ServiceModelDataPenduduk.createDataPendudukRequest inValue = new ServiceModelDataPenduduk.createDataPendudukRequest();
             inValue.dataPenduduk = dataPenduduk;
@@ -565,7 +663,7 @@ namespace ServiceModelDataPenduduk
             return base.Channel.updateDataPenduduk(request);
         }
         
-        public bool updateDataPenduduk(ref Tracking_Vaksin_Services.DataPendudukS dataPenduduk, ref int StatusCode, ref string Message)
+        public bool updateDataPenduduk(ref ServiceModelDataPenduduk.DataPendudukS dataPenduduk, ref int StatusCode, ref string Message)
         {
             ServiceModelDataPenduduk.updateDataPendudukRequest inValue = new ServiceModelDataPenduduk.updateDataPendudukRequest();
             inValue.dataPenduduk = dataPenduduk;

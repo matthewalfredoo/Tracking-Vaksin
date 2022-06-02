@@ -10,7 +10,7 @@ namespace Tracking_Vaksin.Controllers
     {
         private BPOMS bpomS = null;
         private ServiceModelBPOMClient serviceModelBPOMClient = new ServiceModelBPOMClient();
-        private List<ServiceModelDataVaksin.DataVaksinS> listBpomS = new List<ServiceModelDataVaksin.DataVaksinS>();
+        private List<ServiceModelDataVaksin.DataVaksinS> listDataVaksinS = new List<ServiceModelDataVaksin.DataVaksinS>();
         private ServiceModelDataVaksinClient serviceModelDataVaksinClient = new ServiceModelDataVaksinClient();
         private int StatusCode = 500;
         private string Message = "";
@@ -26,8 +26,8 @@ namespace Tracking_Vaksin.Controllers
             {
                 ViewBag.username = HttpContext.Session.GetString("_Username");
                 int idBpom = (int)HttpContext.Session.GetInt32(BpomController.ID_SESSION);
-                serviceModelDataVaksinClient.getAllDataVaksin(ref listBpomS, ref StatusCode, ref Message);
-                return View(listBpomS);
+                serviceModelDataVaksinClient.getAllDataVaksin(ref listDataVaksinS, ref StatusCode, ref Message);
+                return View(listDataVaksinS);
             }
             return View();
         }

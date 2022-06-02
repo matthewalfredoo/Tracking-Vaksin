@@ -18,15 +18,7 @@ namespace Tracking_Vaksin.Controllers
 
         public IActionResult Index()
         {
-            Tracking_Vaksin_Services.BPOMS bpomS = null;
-            string username = "bpom1";
-            string password = "12345678";
-
-            ServiceModelBPOM.ServiceModelBPOMClient serviceModelBPOMClient = new ServiceModelBPOM.ServiceModelBPOMClient();
-            serviceModelBPOMClient.login(ref bpomS, username, password, ref StatusCode, ref Message);
-
-            ServiceModelBPOM.loginRequest LoginRequest = new ServiceModelBPOM.loginRequest(bpomS, username, password, StatusCode, Message);
-            return View(LoginRequest);
+            return View();
         }
 
         public IActionResult Privacy()

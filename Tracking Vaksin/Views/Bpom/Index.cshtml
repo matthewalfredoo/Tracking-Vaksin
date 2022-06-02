@@ -3,13 +3,13 @@
 @model List<ServiceModelDataVaksin.DataVaksinS>
 
 @{
-     ViewData["Title"] = "Home Page BPOM";
+    ViewData["Title"] = "Home Page BPOM";
 }
 
 @{
     string username = HttpContextAccessor.HttpContext.Session.GetString("_Username") ?? "";
 }
-@if(username != "")
+@if (username != "")
 {
 
     <div class="container">
@@ -17,26 +17,35 @@
             <div class="col-12">
                 <h3 align="center">Selamat Datang di Sistem Data BPOM, @username!</h3>
                 <div></div>
-                <h4>Daftar Vaksin yang Sudah Diregistrasi</h4>
-                <table  class="table">
+                
+                <br/>
+                <h5>Daftar Vaksin yang Sudah Diregistrasi</h5>
+                <span class="mb-4">Berikut adalah daftar vaksin yang sudah diregistrasikan oleh masing-masing Produsen Vaksin</span>
+                <table class="table">
                     <thead>
-                    <tr>
-                        <th scope="col">ID Produsen</th>
-                        <th scope="col">Nomor Registrasi</th>
-                        <th scope="col">Nama Vaksin</th>
-                        <th scope="col">Jumlah</th>
-                    </tr>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">ID Produsen</th>
+                            <th scope="col">Nomor Registrasi</th>
+                            <th scope="col">Nama Vaksin</th>
+                            <th scope="col">Jumlah</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                        <td>@item.id_produsen</td>
-                        <td>@item.no_registrasi</td>
-                        <td>@item.nama</td>
-                        <td>@item.jumlah</td>
-                        </tr>
-                    }
+                        @{
+                            int i = 1;
+                            foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>@i</td>
+                                <td>@item.id_produsen</td>
+                                <td>@item.no_registrasi</td>
+                                <td>@item.nama</td>
+                                <td>@item.jumlah</td>
+                                </tr>
+                                i++;
+                            }
+                        }
                     </tbody>
                 </table>
             </div>
