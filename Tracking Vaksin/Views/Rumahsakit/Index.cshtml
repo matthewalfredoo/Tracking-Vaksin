@@ -1,0 +1,122 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@model List<ServiceModelDataVaksin.DataVaksinS>
+
+@{
+    ViewData["Title"] = "Home Page Rumah Sakit";
+}
+
+@{
+    string username = HttpContextAccessor.HttpContext.Session.GetString("_Username") ?? "";
+    int id = HttpContextAccessor.HttpContext.Session.GetInt32("_Id") ?? -1;
+    
+}
+@if(username != "")
+{
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 align="center">Selamat Datang di Sistem Data Rumah Sakit, @username!</h3>
+            </div>
+            <div class="col-md-6" align="left">
+            <a asp-action="ListDataPasien" class="btn btn-warning">List Data Pasien</a>
+            </div>
+            <div class="col-md-6" align="right">
+            <a asp-action="CreateDataPasien" class="btn btn-primary">Tambah Data Pasien</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div></div>
+                <h4>Daftar Vaksin yang Sudah Diregistrasi</h4>
+                <table  class="table">
+                    <thead align="center">
+                    <tr>
+                        <th scope="col">ID Produsen</th>
+                        <th scope="col">Nomor Registrasi</th>
+                        <th scope="col">Nama Vaksin</th>
+                        <th scope="col">Jumlah</th>
+                        <th scope="col">ID Rumah Sakit Penerima</th>
+                        <th scope="col">Tanggal Terima</th>
+                        <th scope="col">Jumlah Pakai</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody align="center">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                        <td>@item.id_produsen</td>
+                        <td>@item.no_registrasi</td>
+                        <td>@item.nama</td>
+                        <td>@item.jumlah</td>
+                        <td>@item.id_rumahsakit_penerima</td>
+                        <td>@item.tgl_terima</td>
+                        <td>@item.jumlah_pakai</td>
+                        @if(item.id_rumahsakit_penerima != null){
+                            <td></td>
+                        }
+                        else {
+                            <td>
+                            <a class="btn btn-success" asp-action="UpdateDataVaksin" asp-route-id="@item.id">Order</a>
+                            </td>
+                        }
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <h4>Daftar Vaksin Yang Sudah Diorder</h4>
+                <table  class="table">
+                    <thead align="center">
+                    <tr>
+                        <th scope="col">ID Produsen</th>
+                        <th scope="col">Nomor Registrasi</th>
+                        <th scope="col">Nama Vaksin</th>
+                        <th scope="col">Jumlah</th>
+                        <th scope="col">ID Rumah Sakit Penerima</th>
+                        <th scope="col">Tanggal Terima</th>
+                        <th scope="col">Jumlah Pakai</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody align="center">
+                    @foreach (var item in Model)
+                    {
+                        @if(item.id_rumahsakit_penerima == id ) {
+                            <tr>
+                            <td>@item.id_produsen</td>
+                            <td>@item.no_registrasi</td>
+                            <td>@item.nama</td>
+                            <td>@item.jumlah</td>
+                            <td>@item.id_rumahsakit_penerima</td>
+                            <td>@item.tgl_terima</td>
+                            <td>@item.jumlah_pakai</td>
+                            @if(item.tgl_terima != null){
+                                <td></td>
+                            }
+                            else {
+                                <td>
+                                <a class="btn btn-success" asp-action="TerimaVaksin" asp-route-id="@item.id">Diterima</a>
+                                </td>
+                            }
+                            </tr>
+                        }
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+}
+else
+{
+    <h3>Selamat Datang</h3>
+    <span>Silahkan </span> <a asp-action="Login">login di sini</a>
+}

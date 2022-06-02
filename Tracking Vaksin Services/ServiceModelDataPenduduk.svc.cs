@@ -14,10 +14,18 @@ namespace Tracking_Vaksin_Services
     {
         public bool createDataPenduduk(ref DataPendudukS dataPenduduk, ref int StatusCode, ref string Message)
         {
-            using(DBVaksinEntities db = new DBVaksinEntities())
+            using (DBVaksinEntities db = new DBVaksinEntities())
             {
                 try
                 {
+                    string nikParam = dataPenduduk.nik;
+                    if (db.DataPenduduk.Any(x => x.nik == nikParam))
+                    {
+                        StatusCode = 400;
+                        Message = "Data penduduk sudah ada";
+                        return false;
+                    }
+
                     DataPenduduk pendudukCreate = new DataPenduduk
                     {
                         id = dataPenduduk.id,
@@ -28,7 +36,7 @@ namespace Tracking_Vaksin_Services
                         jenis_kelamin = dataPenduduk.jenis_kelamin
                     };
                     db.DataPenduduk.Add(pendudukCreate);
-                    
+
                     db.SaveChanges();
                     StatusCode = 200;
                     Message = "Data penduduk berhasil ditambahkan";
@@ -49,10 +57,26 @@ namespace Tracking_Vaksin_Services
             {
                 try
                 {
+                    if (!db.DataPenduduk.Any(x => x.id == id))
+                    {
+                        StatusCode = 404;
+                        Message = "Data penduduk tidak ditemukan";
+                        return false;
+                    }
+
                     DataPenduduk dataPendudukDelete = db.DataPenduduk.Find(id);
+
+                    if (db.DataPasien.Any(x => x.id_penduduk == dataPendudukDelete.id)
+                        || db.Masyarakat.Any(x => x.id_data_penduduk == dataPendudukDelete.id))
+                    {
+                        StatusCode = 400;
+                        Message = "Data penduduk tidak dapat dihapus karena masih memiliki data pasien atau masyarakat";
+                        return false;
+                    }
+
                     db.DataPenduduk.Remove(dataPendudukDelete);
                     db.SaveChanges();
-                    
+
                     StatusCode = 200;
                     Message = "Data penduduk berhasil dihapus";
                     return true;
@@ -72,7 +96,7 @@ namespace Tracking_Vaksin_Services
             {
                 try
                 {
-                    var dataPendudukGetALl= db.DataPenduduk;
+                    var dataPendudukGetALl = db.DataPenduduk;
                     foreach (var data in dataPendudukGetALl)
                     {
                         DataPendudukS dataPendudukS = new DataPendudukS
@@ -86,7 +110,7 @@ namespace Tracking_Vaksin_Services
                         };
                         dataPenduduk.Add(dataPendudukS);
                     }
-                    
+
                     StatusCode = 200;
                     Message = "Data penduduk berhasil diambil";
                     return true;
@@ -106,26 +130,25 @@ namespace Tracking_Vaksin_Services
             {
                 try
                 {
-                    DataPenduduk dataPendudukGetByID = db.DataPenduduk.Find(ID);
-                    if (dataPendudukGetByID != null)
+                    if (db.DataPenduduk.Any(x => x.id == ID))
                     {
+                        DataPenduduk dataPenduduk = db.DataPenduduk.Find(ID);
                         dataPendudukS = new DataPendudukS
                         {
-                            id = dataPendudukGetByID.id,
-                            id_pemerintah = dataPendudukGetByID.id_pemerintah,
-                            nama = dataPendudukGetByID.nama,
-                            nik = dataPendudukGetByID.nik,
-                            alamat = dataPendudukGetByID.alamat,
-                            jenis_kelamin = dataPendudukGetByID.jenis_kelamin
+                            id = dataPenduduk.id,
+                            id_pemerintah = dataPenduduk.id_pemerintah,
+                            nama = dataPenduduk.nama,
+                            nik = dataPenduduk.nik,
+                            alamat = dataPenduduk.alamat,
+                            jenis_kelamin = dataPenduduk.jenis_kelamin
                         };
-                        
                         StatusCode = 200;
                         Message = "Data penduduk berhasil diambil";
                         return true;
                     }
                     else
                     {
-                        StatusCode = 404;
+                        StatusCode = 400;
                         Message = "Data penduduk tidak ditemukan";
                         return false;
                     }
@@ -141,13 +164,13 @@ namespace Tracking_Vaksin_Services
 
         public bool getDataPendudukByNIK(ref DataPendudukS dataPenduduk, string NIK, ref int StatusCode, ref string Message)
         {
-            using(DBVaksinEntities db = new DBVaksinEntities())
+            using (DBVaksinEntities db = new DBVaksinEntities())
             {
                 try
                 {
-                    DataPenduduk dataPendudukGetByNIK= db.DataPenduduk.Where(x => x.nik == NIK).FirstOrDefault();
-                    if (dataPenduduk != null)
+                    if (db.DataPenduduk.Any(x => x.nik == NIK))
                     {
+                        DataPenduduk dataPendudukGetByNIK = db.DataPenduduk.Where(x => x.nik == NIK).FirstOrDefault();
                         dataPenduduk = new DataPendudukS
                         {
                             id = dataPendudukGetByNIK.id,
@@ -157,7 +180,6 @@ namespace Tracking_Vaksin_Services
                             alamat = dataPendudukGetByNIK.alamat,
                             jenis_kelamin = dataPendudukGetByNIK.jenis_kelamin
                         };
-                        
                         StatusCode = 200;
                         Message = "Data penduduk berhasil diambil";
                         return true;
@@ -180,7 +202,7 @@ namespace Tracking_Vaksin_Services
 
         public bool updateDataPenduduk(ref DataPendudukS dataPendudukS, ref int StatusCode, ref string Message)
         {
-            using(DBVaksinEntities db = new DBVaksinEntities())
+            using (DBVaksinEntities db = new DBVaksinEntities())
             {
                 try
                 {
@@ -201,7 +223,7 @@ namespace Tracking_Vaksin_Services
                         alamat = dataPendudukDiedit.alamat,
                         jenis_kelamin = dataPendudukDiedit.jenis_kelamin
                     };
-                    
+
                     StatusCode = 200;
                     Message = "Data penduduk berhasil diperbarui";
                     return true;

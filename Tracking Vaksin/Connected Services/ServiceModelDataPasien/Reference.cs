@@ -536,7 +536,7 @@ namespace ServiceModelDataPasien
             return base.Channel.getAllDataPasien(request);
         }
         
-        public bool getAllDataPasien(ref System.Collections.Generic.List<Tracking_Vaksin_Services.DataPasienS> dataPasienS, ref int StatusCode, ref string Message)
+        public bool getAllDataPasien(ref Tracking_Vaksin_Services.DataPasienS dataPasienS1, ref System.Collections.Generic.List<Tracking_Vaksin_Services.DataPasienS> dataPasienS, ref int StatusCode, ref string Message)
         {
             ServiceModelDataPasien.getAllDataPasienRequest inValue = new ServiceModelDataPasien.getAllDataPasienRequest();
             inValue.dataPasienS = dataPasienS;

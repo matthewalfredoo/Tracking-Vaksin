@@ -210,6 +210,7 @@ namespace Tracking_Vaksin_Services
                         DataVaksin dataVaksinUpdate = db.DataVaksin.Find(dataVaksinS.id);
                         dataVaksinUpdate.nama = dataVaksinS.nama;
                         dataVaksinUpdate.tgl_pembuatan = dataVaksinS.tgl_pembuatan;
+                        dataVaksinUpdate.id_rumahsakit_penerima = dataVaksinS.id_rumahsakit_penerima;
                         dataVaksinUpdate.tgl_terima = dataVaksinS.tgl_terima;
                         dataVaksinUpdate.jumlah = dataVaksinS.jumlah;
                         db.SaveChanges();
