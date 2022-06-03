@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Tracking_Vaksin_Services;
-using ServiceModelRumahSakit;
+using ServiceBPOM; // Menggunakan ServiceBPOM untuk melaporkan registrasi vaksin
+using ServiceModelDataPasien;
 using ServiceModelDataPenduduk;
 using ServiceModelDataVaksin;
-using ServiceModelDataPasien;
+using ServiceModelRumahSakit;
 using ServicePemerintah;
-using ServiceBPOM; // Menggunakan ServiceBPOM untuk melaporkan registrasi vaksin
+using Tracking_Vaksin_Services;
 
 namespace Tracking_Vaksin.Controllers
 {
@@ -16,7 +16,7 @@ namespace Tracking_Vaksin.Controllers
         private DataPasienS dataPasienS = null;
         private DataPendudukS dataPendudukS = null;
 
-        private List<ServiceModelDataVaksin.DataVaksinS> listrumahSakits = new List<ServiceModelDataVaksin.DataVaksinS>();
+        private List<ServiceModelDataVaksin.DataVaksinS> listdataVaksinS = new List<ServiceModelDataVaksin.DataVaksinS>();
         private List<DataPasienS> listDataPasienS = new List<DataPasienS>();
 
         private ServiceModelRumahSakitClient serviceModelRumahSakitClient = new ServiceModelRumahSakitClient();
@@ -38,12 +38,12 @@ namespace Tracking_Vaksin.Controllers
 
         public IActionResult Index()
         {
-            if(IsLoggedIn())
+            if (IsLoggedIn())
             {
                 ViewBag.username = HttpContext.Session.GetString("_Username");
                 int idRumahSakit = (int)HttpContext.Session.GetInt32(RumahsakitController.ID_SESSION);
-                serviceModelDataVaksinClient.getAllDataVaksin(ref listrumahSakits, ref StatusCode, ref Message);
-                return View(listrumahSakits);
+                serviceModelDataVaksinClient.getAllDataVaksin(ref listdataVaksinS, ref StatusCode, ref Message);
+                return View(listdataVaksinS);
             }
             return View();
         }
@@ -125,7 +125,7 @@ namespace Tracking_Vaksin.Controllers
             return View();
         }
 
-        
+
         [HttpPost]
         public IActionResult CreateDataPasien(Tracking_Vaksin_Services.DataPasien dataPasien)
         {
@@ -136,7 +136,8 @@ namespace Tracking_Vaksin.Controllers
                 return View();
             }
             serviceModelDataPendudukClient.getDataPendudukByNIK(ref dataPendudukS, dataPasien.nik, ref StatusCode, ref Message);
-            DataPasienS dataPasienS = new DataPasienS {
+            DataPasienS dataPasienS = new DataPasienS
+            {
                 id_penduduk = dataPendudukS.id,
                 id_rumahsakit = idRumahSakit,
                 id_vaksin = dataPasien.id_vaksin,
@@ -173,28 +174,29 @@ namespace Tracking_Vaksin.Controllers
         }
 
         [HttpGet]
-        public IActionResult PemakaianVaksin(){
-            return View();
+        public IActionResult PemakaianVaksin()
+        {
+            serviceModelDataVaksinClient.getAllDataVaksin(ref listdataVaksinS, ref StatusCode, ref Message);
+            return View(listdataVaksinS);
         }
 
-        //[HttpPost]
-        //public IActionResult PemakaianVaksin(Tracking_Vaksin_Services.DataPasien dataPasien)
-        //{
-        //    int idRumahSakit = (int)HttpContext.Session.GetInt32(RumahsakitController.ID_SESSION);
-        //    DataPasienS dataPasienS = new DataPasienS
-        //    {
-
-        //    };
-        //    serviceModelDataPasienClient.getDataPasienByNIK(ref dataPasienS, dataPasien.nik, ref StatusCode, ref Message);
-
-        //    bool success = serviceBPOMClient.LaporPenggunaanVaksin(dataVaksinS.no_registrasi, dataPasien.nik, dataVaksinS.no_registrasi, ref StatusCode, ref Message);
-        //    if (success)
-        //    {
-        //        return RedirectToAction("Index");
-        //    }
-        //    ViewBag.Message = Message;
-        //    return View();
-        //}
+        [HttpPost]
+        public IActionResult PemakaianVaksin(string nik, int id)
+        {
+            int idRumahSakit = (int)HttpContext.Session.GetInt32(RumahsakitController.ID_SESSION);
+            serviceModelDataVaksinClient.getDataVaksinByID(ref dataVaksinS, id, ref StatusCode, ref Message);
+            serviceModelDataPasienClient.getDataPasienByNIK(ref dataPasienS, nik, ref StatusCode, ref Message);
+            dataPasienS.id_vaksin = dataVaksinS.id;
+            dataPasienS.tgl_terimavaksin = DateTime.Now;
+            serviceModelDataPasienClient.updateDataPasien(ref dataPasienS, ref StatusCode, ref Message);
+            bool success = serviceBPOMClient.LaporPenggunaanVaksin(dataVaksinS.no_registrasi, nik, 1 , ref StatusCode, ref Message);
+            if (success)
+            {
+                return RedirectToAction("Index");
+            }
+            ViewBag.Message = Message;
+            return View();
+        }
 
 
     }
