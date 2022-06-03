@@ -32,7 +32,6 @@ else
                 <th>Tanggal Pembuatan</th>
                 <th>Jumlah Produksi</th>
                 <th>Jumlah Pakai</th>
-                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -45,9 +44,6 @@ else
                     <td>@item.tgl_pembuatan</td>
                     <td>@item.jumlah</td>
                     <td>@item.jumlah_pakai</td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.id">Edit</a>
-                    </td>
                 </tr>
             }
         </tbody>

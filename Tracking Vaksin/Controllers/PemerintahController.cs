@@ -7,7 +7,7 @@ namespace Tracking_Vaksin.Controllers
 {
     public class PemerintahController : Controller
     {
-        private PemerintahS pemerintahS = null;
+        private ServiceModelPemerintah.PemerintahS pemerintahS = null;
         private List<ServiceModelDataPenduduk.DataPendudukS> listDataPendudukS = new List<ServiceModelDataPenduduk.DataPendudukS>();
 
         private ServiceModelPemerintahClient serviceModelPemerintahClient = new ServiceModelPemerintahClient();

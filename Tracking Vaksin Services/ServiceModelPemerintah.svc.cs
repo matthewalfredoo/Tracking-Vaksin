@@ -32,7 +32,7 @@ namespace Tracking_Vaksin_Services
                     else
                     {
                         StatusCode = 404;
-                        message = "Login Failed";
+                        message = "Kombinasi username dan password salah";
                         return false;
                     }
                 }

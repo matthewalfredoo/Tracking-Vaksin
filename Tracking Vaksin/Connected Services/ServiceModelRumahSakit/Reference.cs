@@ -9,7 +9,75 @@
 
 namespace ServiceModelRumahSakit
 {
+    using System.Runtime.Serialization;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RumahSakitS", Namespace="http://schemas.datacontract.org/2004/07/Tracking_Vaksin_Services")]
+    public partial class RumahSakitS : object
+    {
+        
+        private string alamatField;
+        
+        private int idField;
+        
+        private string namaField;
+        
+        private string usernameField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string alamat
+        {
+            get
+            {
+                return this.alamatField;
+            }
+            set
+            {
+                this.alamatField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string nama
+        {
+            get
+            {
+                return this.namaField;
+            }
+            set
+            {
+                this.namaField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string username
+        {
+            get
+            {
+                return this.usernameField;
+            }
+            set
+            {
+                this.usernameField = value;
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceModelRumahSakit.IServiceModelRumahSakit")]
@@ -31,7 +99,7 @@ namespace ServiceModelRumahSakit
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public Tracking_Vaksin_Services.RumahSakitS rumahSakitS;
+        public ServiceModelRumahSakit.RumahSakitS rumahSakitS;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
         public string username;
@@ -49,7 +117,7 @@ namespace ServiceModelRumahSakit
         {
         }
         
-        public loginRequest(Tracking_Vaksin_Services.RumahSakitS rumahSakitS, string username, string password, int StatusCode, string Message)
+        public loginRequest(ServiceModelRumahSakit.RumahSakitS rumahSakitS, string username, string password, int StatusCode, string Message)
         {
             this.rumahSakitS = rumahSakitS;
             this.username = username;
@@ -69,7 +137,7 @@ namespace ServiceModelRumahSakit
         public bool loginResult;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
-        public Tracking_Vaksin_Services.RumahSakitS rumahSakitS;
+        public ServiceModelRumahSakit.RumahSakitS rumahSakitS;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
         public int StatusCode;
@@ -81,7 +149,7 @@ namespace ServiceModelRumahSakit
         {
         }
         
-        public loginResponse(bool loginResult, Tracking_Vaksin_Services.RumahSakitS rumahSakitS, int StatusCode, string Message)
+        public loginResponse(bool loginResult, ServiceModelRumahSakit.RumahSakitS rumahSakitS, int StatusCode, string Message)
         {
             this.loginResult = loginResult;
             this.rumahSakitS = rumahSakitS;
@@ -146,7 +214,7 @@ namespace ServiceModelRumahSakit
             return base.Channel.login(request);
         }
         
-        public bool login(ref Tracking_Vaksin_Services.RumahSakitS rumahSakitS, string username, string password, ref int StatusCode, ref string Message)
+        public bool login(ref ServiceModelRumahSakit.RumahSakitS rumahSakitS, string username, string password, ref int StatusCode, ref string Message)
         {
             ServiceModelRumahSakit.loginRequest inValue = new ServiceModelRumahSakit.loginRequest();
             inValue.rumahSakitS = rumahSakitS;

@@ -9,7 +9,60 @@
 
 namespace ServiceModelProdusen
 {
+    using System.Runtime.Serialization;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ProdusenS", Namespace="http://schemas.datacontract.org/2004/07/Tracking_Vaksin_Services")]
+    public partial class ProdusenS : object
+    {
+        
+        private int idField;
+        
+        private string namaField;
+        
+        private string usernameField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string nama
+        {
+            get
+            {
+                return this.namaField;
+            }
+            set
+            {
+                this.namaField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string username
+        {
+            get
+            {
+                return this.usernameField;
+            }
+            set
+            {
+                this.usernameField = value;
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceModelProdusen.IServiceModelProdusen")]
@@ -107,7 +160,7 @@ namespace ServiceModelProdusen
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public Tracking_Vaksin_Services.ProdusenS produsen;
+        public ServiceModelProdusen.ProdusenS produsen;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
         public string username;
@@ -125,7 +178,7 @@ namespace ServiceModelProdusen
         {
         }
         
-        public loginRequest(Tracking_Vaksin_Services.ProdusenS produsen, string username, string password, int StatusCode, string Message)
+        public loginRequest(ServiceModelProdusen.ProdusenS produsen, string username, string password, int StatusCode, string Message)
         {
             this.produsen = produsen;
             this.username = username;
@@ -145,7 +198,7 @@ namespace ServiceModelProdusen
         public bool loginResult;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
-        public Tracking_Vaksin_Services.ProdusenS produsen;
+        public ServiceModelProdusen.ProdusenS produsen;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
         public int StatusCode;
@@ -157,7 +210,7 @@ namespace ServiceModelProdusen
         {
         }
         
-        public loginResponse(bool loginResult, Tracking_Vaksin_Services.ProdusenS produsen, int StatusCode, string Message)
+        public loginResponse(bool loginResult, ServiceModelProdusen.ProdusenS produsen, int StatusCode, string Message)
         {
             this.loginResult = loginResult;
             this.produsen = produsen;
@@ -173,7 +226,7 @@ namespace ServiceModelProdusen
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public Tracking_Vaksin_Services.ProdusenS produsen;
+        public ServiceModelProdusen.ProdusenS produsen;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
         public int id;
@@ -188,7 +241,7 @@ namespace ServiceModelProdusen
         {
         }
         
-        public getProdusenByIdRequest(Tracking_Vaksin_Services.ProdusenS produsen, int id, int StatusCode, string Message)
+        public getProdusenByIdRequest(ServiceModelProdusen.ProdusenS produsen, int id, int StatusCode, string Message)
         {
             this.produsen = produsen;
             this.id = id;
@@ -207,7 +260,7 @@ namespace ServiceModelProdusen
         public bool getProdusenByIdResult;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
-        public Tracking_Vaksin_Services.ProdusenS produsen;
+        public ServiceModelProdusen.ProdusenS produsen;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
         public int StatusCode;
@@ -219,7 +272,7 @@ namespace ServiceModelProdusen
         {
         }
         
-        public getProdusenByIdResponse(bool getProdusenByIdResult, Tracking_Vaksin_Services.ProdusenS produsen, int StatusCode, string Message)
+        public getProdusenByIdResponse(bool getProdusenByIdResult, ServiceModelProdusen.ProdusenS produsen, int StatusCode, string Message)
         {
             this.getProdusenByIdResult = getProdusenByIdResult;
             this.produsen = produsen;
@@ -309,7 +362,7 @@ namespace ServiceModelProdusen
             return base.Channel.login(request);
         }
         
-        public bool login(ref Tracking_Vaksin_Services.ProdusenS produsen, string username, string password, ref int StatusCode, ref string Message)
+        public bool login(ref ServiceModelProdusen.ProdusenS produsen, string username, string password, ref int StatusCode, ref string Message)
         {
             ServiceModelProdusen.loginRequest inValue = new ServiceModelProdusen.loginRequest();
             inValue.produsen = produsen;
@@ -335,7 +388,7 @@ namespace ServiceModelProdusen
             return base.Channel.getProdusenById(request);
         }
         
-        public bool getProdusenById(ref Tracking_Vaksin_Services.ProdusenS produsen, int id, ref int StatusCode, ref string Message)
+        public bool getProdusenById(ref ServiceModelProdusen.ProdusenS produsen, int id, ref int StatusCode, ref string Message)
         {
             ServiceModelProdusen.getProdusenByIdRequest inValue = new ServiceModelProdusen.getProdusenByIdRequest();
             inValue.produsen = produsen;

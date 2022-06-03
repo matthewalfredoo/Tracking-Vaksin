@@ -9,7 +9,45 @@
 
 namespace ServiceModelPemerintah
 {
+    using System.Runtime.Serialization;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PemerintahS", Namespace="http://schemas.datacontract.org/2004/07/Tracking_Vaksin_Services")]
+    public partial class PemerintahS : object
+    {
+        
+        private int idField;
+        
+        private string usernameField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string username
+        {
+            get
+            {
+                return this.usernameField;
+            }
+            set
+            {
+                this.usernameField = value;
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.3")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceModelPemerintah.IServiceModelPemerintah")]
@@ -31,7 +69,7 @@ namespace ServiceModelPemerintah
     {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public Tracking_Vaksin_Services.PemerintahS pemerintahS;
+        public ServiceModelPemerintah.PemerintahS pemerintahS;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
         public string username;
@@ -49,7 +87,7 @@ namespace ServiceModelPemerintah
         {
         }
         
-        public loginRequest(Tracking_Vaksin_Services.PemerintahS pemerintahS, string username, string password, int StatusCode, string message)
+        public loginRequest(ServiceModelPemerintah.PemerintahS pemerintahS, string username, string password, int StatusCode, string message)
         {
             this.pemerintahS = pemerintahS;
             this.username = username;
@@ -69,7 +107,7 @@ namespace ServiceModelPemerintah
         public bool loginResult;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
-        public Tracking_Vaksin_Services.PemerintahS pemerintahS;
+        public ServiceModelPemerintah.PemerintahS pemerintahS;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
         public int StatusCode;
@@ -81,7 +119,7 @@ namespace ServiceModelPemerintah
         {
         }
         
-        public loginResponse(bool loginResult, Tracking_Vaksin_Services.PemerintahS pemerintahS, int StatusCode, string message)
+        public loginResponse(bool loginResult, ServiceModelPemerintah.PemerintahS pemerintahS, int StatusCode, string message)
         {
             this.loginResult = loginResult;
             this.pemerintahS = pemerintahS;
@@ -146,7 +184,7 @@ namespace ServiceModelPemerintah
             return base.Channel.login(request);
         }
         
-        public bool login(ref Tracking_Vaksin_Services.PemerintahS pemerintahS, string username, string password, ref int StatusCode, ref string message)
+        public bool login(ref ServiceModelPemerintah.PemerintahS pemerintahS, string username, string password, ref int StatusCode, ref string message)
         {
             ServiceModelPemerintah.loginRequest inValue = new ServiceModelPemerintah.loginRequest();
             inValue.pemerintahS = pemerintahS;

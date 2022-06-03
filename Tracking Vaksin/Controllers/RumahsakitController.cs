@@ -11,10 +11,10 @@ namespace Tracking_Vaksin.Controllers
 {
     public class RumahsakitController : Controller
     {
-        private RumahSakitS rumahSakitS = null;
+        private ServiceModelRumahSakit.RumahSakitS rumahSakitS = null;
         private ServiceModelDataVaksin.DataVaksinS dataVaksinS = null;
         private DataPasienS dataPasienS = null;
-        private DataPendudukS dataPendudukS = null;
+        private ServiceModelDataPenduduk.DataPendudukS dataPendudukS = null;
 
         private List<ServiceModelDataVaksin.DataVaksinS> listdataVaksinS = new List<ServiceModelDataVaksin.DataVaksinS>();
         private List<DataPasienS> listDataPasienS = new List<DataPasienS>();

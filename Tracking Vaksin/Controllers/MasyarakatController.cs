@@ -10,12 +10,12 @@ namespace Tracking_Vaksin.Controllers
 {
     public class MasyarakatController : Controller
     {
-        private MasyarakatS masyarakatS = null;
+        private ServiceDataModelMasyarakat.MasyarakatS masyarakatS = null;
         private ServiceModelDataPenduduk.DataPendudukS dataPendudukS = null;
-        private Tracking_Vaksin_Services.DataPendudukS dataPendudukS2 = null;
+        private ServiceDataModelMasyarakat.DataPendudukS dataPendudukS2 = null;
         private DataPasienS dataPasienS = null;
         private ServiceModelDataVaksin.DataVaksinS dataVaksinS = null;
-        private ProdusenS produsenS = null;
+        private ServiceModelProdusen.ProdusenS produsenS = null;
 
         private ServiceModelMasyarakatClient serviceModelMasyarakatClient = new ServiceModelMasyarakatClient();
         private ServiceModelDataPendudukClient serviceModelDataPendudukClient = new ServiceModelDataPendudukClient();

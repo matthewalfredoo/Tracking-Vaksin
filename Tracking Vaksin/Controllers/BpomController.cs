@@ -8,7 +8,7 @@ namespace Tracking_Vaksin.Controllers
 {
     public class BpomController : Controller
     {
-        private BPOMS bpomS = null;
+        private ServiceModelBPOM.BPOMS bpomS = null;
         private ServiceModelBPOMClient serviceModelBPOMClient = new ServiceModelBPOMClient();
         private List<ServiceModelDataVaksin.DataVaksinS> listDataVaksinS = new List<ServiceModelDataVaksin.DataVaksinS>();
         private ServiceModelDataVaksinClient serviceModelDataVaksinClient = new ServiceModelDataVaksinClient();

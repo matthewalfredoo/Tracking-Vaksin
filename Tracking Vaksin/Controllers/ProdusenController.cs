@@ -8,7 +8,7 @@ namespace Tracking_Vaksin.Controllers
 {
     public class ProdusenController : Controller
     {
-        private ProdusenS produsenS = null;
+        private ServiceModelProdusen.ProdusenS produsenS = null;
         private List<ServiceModelDataVaksin.DataVaksinS> listProdusenS = new List<ServiceModelDataVaksin.DataVaksinS>();
 
         private ServiceModelProdusenClient serviceModelProdusenClient = new ServiceModelProdusenClient();

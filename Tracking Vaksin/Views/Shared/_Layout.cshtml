@@ -30,16 +30,23 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        @{
+                            string controller = "";
+                            string username = "";
+
+                            controller = HttpContextAccessor.HttpContext.Session.GetString("_Role") ?? "";
+                            username = HttpContextAccessor.HttpContext.Session.GetString("_Username") ?? "";
+
+                            if(controller != ""){
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="@controller" asp-action="Index">Index</a>
+                                </li>
+                            }
+                        }
                     </ul>
                 </div>
                 <ul class="navbar-nav ml-auto">
                     @{
-                        string controller = "";
-                        string username = "";
-
-                        controller = HttpContextAccessor.HttpContext.Session.GetString("_Role") ?? "";
-                        username = HttpContextAccessor.HttpContext.Session.GetString("_Username") ?? "";
-
                         if (controller != "")
                         {
                             <li class="nav-item dropdown">
