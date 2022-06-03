@@ -28,7 +28,11 @@ else
     <span>Anda dapat mengelola data penduduk di halaman ini</span>
     <br />
 
-    <a asp-action="CreatePenduduk">Tambah Data Penduduk</a>
+    <div class="row mt-3">
+        <div class="col-12" align="left">
+            <a asp-action="CreatePenduduk" class="btn btn-primary">Tambah Data Penduduk</a>
+        </div>
+    </div>
 
     <br />
     <table class="table table-striped">
@@ -56,7 +60,7 @@ else
                             <td>@item.alamat</td>
                             <td>@item.jenis_kelamin</td>
                             <td>
-                                <a asp-action="DeletePenduduk" asp-route-id="@item.id">Hapus</a>
+                                <a asp-action="DeletePenduduk" asp-route-id="@item.id" class="btn btn-danger">Hapus</a>
                             </td>
                         </tr>
                         i++;
