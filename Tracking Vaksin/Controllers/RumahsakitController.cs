@@ -133,6 +133,7 @@ namespace Tracking_Vaksin.Controllers
             bool valid = servicePemerintahClient.KonfirmasiNIKPenduduk(dataPasien.nik, ref StatusCode, ref Message);
             if (!valid)
             {
+                ViewBag.Message = Message;
                 return View();
             }
             serviceModelDataPendudukClient.getDataPendudukByNIK(ref dataPendudukS, dataPasien.nik, ref StatusCode, ref Message);
