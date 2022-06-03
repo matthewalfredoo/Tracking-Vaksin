@@ -14,7 +14,7 @@ namespace Tracking_Vaksin_Services
     {
         public bool createDataPenduduk(ref DataPendudukS dataPenduduk, ref int StatusCode, ref string Message)
         {
-            using(DBVaksinEntities db = new DBVaksinEntities())
+            using (DBVaksinEntities db = new DBVaksinEntities())
             {
                 try
                 {
@@ -25,7 +25,7 @@ namespace Tracking_Vaksin_Services
                         Message = "Data penduduk sudah ada";
                         return false;
                     }
-                    
+
                     DataPenduduk pendudukCreate = new DataPenduduk
                     {
                         id = dataPenduduk.id,
@@ -36,7 +36,7 @@ namespace Tracking_Vaksin_Services
                         jenis_kelamin = dataPenduduk.jenis_kelamin
                     };
                     db.DataPenduduk.Add(pendudukCreate);
-                    
+
                     db.SaveChanges();
                     StatusCode = 200;
                     Message = "Data penduduk berhasil ditambahkan";
@@ -57,7 +57,7 @@ namespace Tracking_Vaksin_Services
             {
                 try
                 {
-                    if(!db.DataPenduduk.Any(x => x.id == id))
+                    if (!db.DataPenduduk.Any(x => x.id == id))
                     {
                         StatusCode = 404;
                         Message = "Data penduduk tidak ditemukan";
@@ -65,15 +65,15 @@ namespace Tracking_Vaksin_Services
                     }
 
                     DataPenduduk dataPendudukDelete = db.DataPenduduk.Find(id);
-                    
-                    if(db.DataPasien.Any(x => x.id_penduduk == dataPendudukDelete.id) 
+
+                    if (db.DataPasien.Any(x => x.id_penduduk == dataPendudukDelete.id)
                         || db.Masyarakat.Any(x => x.id_data_penduduk == dataPendudukDelete.id))
                     {
                         StatusCode = 400;
                         Message = "Data penduduk tidak dapat dihapus karena masih memiliki data pasien atau masyarakat";
                         return false;
                     }
-                    
+
                     db.DataPenduduk.Remove(dataPendudukDelete);
                     db.SaveChanges();
 
@@ -96,7 +96,7 @@ namespace Tracking_Vaksin_Services
             {
                 try
                 {
-                    var dataPendudukGetALl= db.DataPenduduk;
+                    var dataPendudukGetALl = db.DataPenduduk;
                     foreach (var data in dataPendudukGetALl)
                     {
                         DataPendudukS dataPendudukS = new DataPendudukS
@@ -110,7 +110,7 @@ namespace Tracking_Vaksin_Services
                         };
                         dataPenduduk.Add(dataPendudukS);
                     }
-                    
+
                     StatusCode = 200;
                     Message = "Data penduduk berhasil diambil";
                     return true;
@@ -164,7 +164,7 @@ namespace Tracking_Vaksin_Services
 
         public bool getDataPendudukByNIK(ref DataPendudukS dataPenduduk, string NIK, ref int StatusCode, ref string Message)
         {
-            using(DBVaksinEntities db = new DBVaksinEntities())
+            using (DBVaksinEntities db = new DBVaksinEntities())
             {
                 try
                 {
@@ -202,7 +202,7 @@ namespace Tracking_Vaksin_Services
 
         public bool updateDataPenduduk(ref DataPendudukS dataPendudukS, ref int StatusCode, ref string Message)
         {
-            using(DBVaksinEntities db = new DBVaksinEntities())
+            using (DBVaksinEntities db = new DBVaksinEntities())
             {
                 try
                 {
@@ -223,7 +223,7 @@ namespace Tracking_Vaksin_Services
                         alamat = dataPendudukDiedit.alamat,
                         jenis_kelamin = dataPendudukDiedit.jenis_kelamin
                     };
-                    
+
                     StatusCode = 200;
                     Message = "Data penduduk berhasil diperbarui";
                     return true;

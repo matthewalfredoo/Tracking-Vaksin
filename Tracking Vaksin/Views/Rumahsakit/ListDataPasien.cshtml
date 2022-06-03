@@ -1,0 +1,70 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@model List<Tracking_Vaksin_Services.DataPasienS>
+
+@{
+    ViewData["Title"] = "List Data Pasien";
+}
+
+@{
+    string username = HttpContextAccessor.HttpContext.Session.GetString("_Username") ?? "";
+    int id = HttpContextAccessor.HttpContext.Session.GetInt32("_Id") ?? -1;
+    
+}
+@if(username != "")
+{
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 align="center">Selamat Datang di Sistem Data Rumah Sakit, @username!</h3>
+            </div>
+            <div class="col-md-6" align="left">
+            <a asp-action="Index" class="btn btn-secondary">Back</a>
+            </div>
+            <div class="col-md-6" align="right">
+            <a asp-action="PemakaianVaksin" class="btn btn-primary">Lapor Penggunaan Vaksin</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div></div>
+                <h4>List Pasien yang Sudah Didaftarkan</h4>
+                <table  class="table">
+                    <thead align="center">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">ID Penduduk</th>
+                        <th scope="col">ID Rumah Sakit</th>
+                        <th scope="col">NIK</th>
+                        <th scope="col">ID Vaksin</th>
+                        <th scope="col">Tanggal Terima</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody align="center">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                        <td>@item.id</td>
+                        <td>@item.id_penduduk</td>
+                        <td>@item.id_rumahsakit</td>
+                        <td>@item.nik</td>
+                        <td>@item.id_vaksin</td>
+                        <td>@item.tgl_terimavaksin</td>
+                        <td>
+                            <a class="btn btn-danger" asp-action="DeleteDataPasien" asp-route-id="@item.id">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <h3>Selamat Datang</h3>
+    <span>Silahkan </span> <a asp-action="Login">login di sini</a>
+}

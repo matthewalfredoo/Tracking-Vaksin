@@ -699,7 +699,7 @@ namespace ServiceModelDataVaksin
             return base.Channel.updateDataVaksin(request);
         }
         
-        public bool updateDataVaksin(ServiceModelDataVaksin.DataVaksinS dataVaksinS, ref int StatusCode, ref string Message)
+        public bool updateDataVaksin(int idRumahSakit, ServiceModelDataVaksin.DataVaksinS dataVaksinS, ref int StatusCode, ref string Message)
         {
             ServiceModelDataVaksin.updateDataVaksinRequest inValue = new ServiceModelDataVaksin.updateDataVaksinRequest();
             inValue.dataVaksinS = dataVaksinS;
