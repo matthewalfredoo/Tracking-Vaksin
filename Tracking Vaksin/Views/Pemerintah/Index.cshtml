@@ -8,14 +8,6 @@
 
 @{
     string username = HttpContextAccessor.HttpContext.Session.GetString("_Username") ?? "";
-    
-    if (ViewBag.Message != null)
-    {
-        <div class="alert alert-danger">
-            @ViewBag.Message
-        </div>
-        ViewBag.Message = null;
-    }
 }
 @if (username == "")
 {
@@ -28,13 +20,20 @@ else
     <span>Anda dapat mengelola data penduduk di halaman ini</span>
     <br />
 
-    <div class="row mt-3">
+    <div class="row mt-3 mb-3">
         <div class="col-12" align="left">
             <a asp-action="CreatePenduduk" class="btn btn-primary">Tambah Data Penduduk</a>
         </div>
     </div>
 
-    <br />
+    if (ViewBag.Message != null)
+    {
+        <div class="alert alert-danger mt-3">
+            @ViewBag.Message
+        </div>
+        ViewBag.Message = null;
+    }
+    
     <table class="table table-striped">
         <thead>
             <tr>

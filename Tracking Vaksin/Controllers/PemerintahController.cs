@@ -21,21 +21,16 @@ namespace Tracking_Vaksin.Controllers
         public static string ROLE_SESSION = "_Role";
         public static string ROLE = "Pemerintah";
         
-        public IActionResult Index(Object? param)
+        public IActionResult Index()
         {
             if (IsLoggedIn())
             {
                 serviceModelDataPendudukClient.getAllDataPenduduk(ref listDataPendudukS, ref StatusCode, ref Message);
-                if(StatusCode == 200)
+                if(TempData["Message"] != null)
                 {
-                    return View(listDataPendudukS);
+                    ViewBag.Message = TempData["Message"].ToString();
                 }
-                if(param != null)
-                {
-                    ViewBag.MessageDelete = (string) param;
-                }
-                ViewBag.Message = Message;
-                return View(null);
+                return View(listDataPendudukS);
             }
             return View();
         }
@@ -112,8 +107,8 @@ namespace Tracking_Vaksin.Controllers
             {
                 return RedirectToAction("Index");
             }
-            ViewBag.Message = Message;
-            return RedirectToAction("Index", (object) Message);
+            TempData["Message"] = Message;
+            return RedirectToAction("Index");
         }
     }
 }
