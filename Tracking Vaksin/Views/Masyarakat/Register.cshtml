@@ -6,6 +6,16 @@
 
 <h3>Registrasi Produsen</h3>
 
+@{
+    if (ViewBag.Message != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.Message
+        </div>
+        ViewBag.Message = null;
+    }
+}
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Register">

@@ -50,7 +50,7 @@ namespace Tracking_Vaksin.Controllers
                 bool success = serviceModelDataPasienClient.getDataPasienByNIK(ref dataPasienS, NIK, ref StatusCode, ref Message);
                 if(!success)
                 {
-                    HttpContext.Session.SetString(MasyarakatController.MESSAGE_PASIEN_SESSION, "Anda belum terdaftar sebagai pasien di Rumah Sakit" +
+                    HttpContext.Session.SetString(MasyarakatController.MESSAGE_PASIEN_SESSION, "Anda belum terdaftar sebagai pasien di Rumah Sakit. " +
                         "\nKunjungi Rumah Sakit untuk mendapat vaksin");
                     return View();
                 }

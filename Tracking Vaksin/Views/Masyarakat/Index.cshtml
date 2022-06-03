@@ -35,13 +35,62 @@
     }
     else
     {
-        <h3>Selamat Datang, @nama</h3
-        <br />
+        <h3>Selamat Datang, @nama</h3>
+        <hr />
         
-        <p>Nama: @nama</p>
-        <p>NIK: @nik</p>
-        <p>Alamat: @alamat</p>
-        <p>Jenis Kelamin: @jenis_kelamin</p>
+        <div class="row">
+            <div class="col-2">
+                <span>Nama</span>
+            </div>
+            <div class="col-4">
+                <span>@nama</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <span>NIK</span>
+            </div>
+            <div class="col-4">
+                <span>@nik</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <span>Alamat</span>
+            </div>
+            <div class="col-4">
+                <span>@alamat</span>
+            </div>
+        </div>
+            
+        <div class="row">
+            <div class="col-2">
+                <span>Jenis Kelamin</span>
+            </div>
+            <div class="col-4">
+                <span>@jenis_kelamin</span>
+            </div>
+        </div>
+
+        <div class="row mb-3 mt-3">
+            <div class="col-2">
+                <span>Status Vaksin</span>
+            </div>
+            <div class="col-4">
+                @{
+                    if(messageVaksin == "" && Model != null)
+                    {
+                        <label class="badge badge-success">Sudah Divaksin</label>
+                    }
+                    else
+                    {
+                        <label class="badge badge-danger">Belum Divaksin</label>
+                    }
+                }
+            </div>
+        </div>
 
         if(messagePasien != "")
         {
@@ -55,10 +104,41 @@
 
         if(messageVaksin == "" && Model != null)
         {
-            <p>Nama vaksin: @Model.nama</p>
-            <p>Nomor registrasi vaksin: @Model.no_registrasi</p>
-            <p>Tanggal Pembuatan: @Model.tgl_pembuatan</p>
-            <p>Tanggal Terima Vaksin: @tanggalTerimaVaksin</p>
+            <div class="row">
+                <div class="col-2">
+                    <span>Nama Vaksin</span>
+                </div>
+                <div class="col-4">
+                    <span>@Model.nama</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-2">
+                    <span>No. Registrasi Vaksin</span>
+                </div>
+                <div class="col-4">
+                    <span>@Model.no_registrasi</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-2">
+                    <span>Tanggal Pembuatan</span>
+                </div>
+                <div class="col-4">
+                    <span>@Model.tgl_pembuatan</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-2">
+                    <span>Tanggal Terima Vaksin</span>
+                </div>
+                <div class="col-4">
+                    <span>@tanggalTerimaVaksin</span>
+                </div>
+            </div>
         }
     }
 }
